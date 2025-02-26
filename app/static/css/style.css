@@ -1,3 +1,356 @@
-header {
-    color: red;
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
 }
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Links */
+
+a, a:link, a:visited  {
+    text-decoration: none;
+}
+
+a:hover  {
+    text-decoration: none;
+}
+
+/* Common */
+
+aside, nav, footer, header, section, main {
+	display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-size: inherit;
+	font-weight: inherit;
+}
+
+ul, ul li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+img, svg {
+	max-width: 100%;
+	height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Form */
+
+input, textarea, button, select {
+	font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+input::-ms-clear {
+	display: none;
+}
+
+button, input[type="submit"] {
+    display: inline-block;
+    box-shadow: none;
+    background-color: transparent;
+    background: none;
+    cursor: pointer;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+label {
+	cursor: pointer;
+}
+
+legend {
+	display: block;
+}
+
+@font-face {
+    font-family: 'Vetrino'; 
+    src: url('../fonts/Vetrino.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura'; 
+    src: url('../fonts/Futura-PT_Cond-Book.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura Medium'; 
+    src: url('../fonts/futuralight-light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #b4b4b4;
+}
+
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+header {
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+    background-color: #4a4a4a;
+}
+
+.nav {
+    width: 100%;
+    height: 74px;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-family: 'Vetrino';
+    color: #FFEEDE;
+    font-size: 44px;
+    font-weight: 400;
+}
+
+.nav-menu {
+    margin-left: auto;
+}
+
+.menu-item {
+    cursor: pointer;
+    font-family: 'Futura';
+    font-size: 32px;
+}
+
+a {
+    color: #FFEEDE;
+}
+
+a:hover {
+    color: #a09a94;
+}
+
+.nav-menu .middle {
+    margin: 0 22px;
+}
+
+.nav-handler {
+    margin-left: auto;
+    display: none;
+}
+
+.more {
+    display: flex;
+    align-items: center;
+    padding-top: 74px;
+    z-index: 999;
+    position: fixed;
+    width: 100%;
+    height: 214px;
+    background-color: #3a3a3a;
+    transform: translateY(-100%);
+    transition: transform 0.2s ease-in-out;
+}
+
+@media (min-width: 900px) {
+    .more {
+        display: none;
+    }
+}
+
+.more.show {
+    transform: translateY(0);
+}
+
+.container {
+    padding-left: 110px;
+    padding-right: 110px;
+}
+
+.vertical-middle {
+    margin: 10px 0;
+}
+
+.vertical-last {
+    margin-bottom: 10px;
+}
+
+
+
+@media (max-width: 1080px) {
+    .title {
+        font-size: 36px;
+    }
+    .nav-menu .menu-item {
+        font-size: 28px;
+    }
+
+    .nav-menu .middle {
+        margin: 0 16px;
+    }
+
+    .container {
+        padding-left: 85px;
+        padding-right: 85px;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .menu-item {
+        font-size: 28px;
+    }
+
+    .nav-handler {
+        display: block;
+    }
+
+    .container {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 32px;
+    }
+
+    .container {
+        padding-left: 55px;
+        padding-right: 55px;
+    }
+
+    .menu-item {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 560px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .container {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .menu-item {
+        font-size: 22px;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.2s;
+    visibility: hidden;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#fullImage {
+    max-width: 90%;
+    max-height: 80%;
+    margin-bottom: 10px;
+}
+
+.image-description {
+    color: #fff;
+    font-family: "Futura Medium";
+    font-size: 18px;
+    text-align: center;
+    max-width: 70%;
+    line-height: 1.4em;
+}
+
+.updates {
+    padding-top: 100px;
+}
+
+form {
+    max-width: 300px;        /* Устанавливаем максимальную ширину формы */
+    margin: 0 auto;          /* Располагаем форму по центру */
+    padding: 20px;           /* Внутренние отступы */
+    border: 1px solid #ccc;  /* Рамка вокруг формы */
+    background-color: #f9f9f9; /* Слегка серый фон формы */
+    border-radius: 5px;      /* Закруглённые углы */
+    font-family: Arial, sans-serif; /* Шрифт для формы */
+  }
+  
+  form div {
+    margin-bottom: 15px;     /* Отступ между полями */
+  }
+  
+  label {
+    display: block;          /* Каждое название поля на отдельной строке */
+    margin-bottom: 5px;      /* Небольшой отступ под подписью */
+    font-weight: bold;       /* Жирное начертание для подписей */
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;             /* Поля занимают всю ширину контейнера */
+    padding: 8px;            /* Внутренние отступы внутри полей */
+    box-sizing: border-box;  /* Корректный подсчёт ширины */
+    border: 1px solid #ccc;  /* Небольшая рамка вокруг полей */
+    border-radius: 3px;      /* Лёгкое скругление углов */
+  }
+  
+  button[type="submit"] {
+    padding: 8px 16px;       /* Внутренние отступы по горизонтали и вертикали */
+    background-color: #4CAF50; /* Цвет фона кнопки */
+    color: #fff;             /* Цвет текста на кнопке */
+    border: none;            /* Убираем рамку */
+    border-radius: 3px;      /* Скруглённые углы */
+    cursor: pointer;         /* Указатель в виде руки при наведении */
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049; /* Цвет при наведении */
+  }

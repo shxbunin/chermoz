@@ -30,7 +30,20 @@
     </div>
     <div class="updates no-select">
         <div class="container no-select">
-            <div class="title no-select">Последние обновления</div>
+            <div class="title no-select">Вход</div>
+            <form action="/login" method="post">
+                <div>
+                    <label for="username">Логин:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <button type="submit">Войти</button>
+                </div>
+            </form>
         </div>
     </div>
     <script src="../static/js/header.js"></script>
