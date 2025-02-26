@@ -1,5 +1,6 @@
 from flask import Flask, render_template
-
+import asyncio
+from db import create_tables
 
 app = Flask(__name__)
 
@@ -15,6 +16,9 @@ def album():
 def auth():
     return render_template("auth.html")
 
+async def main():
+    await create_tables()
+    app.run(debug=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    asyncio.run(main())
