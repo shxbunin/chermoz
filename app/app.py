@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, login_user, login_required, current_user
+from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from userLogin import UserLogin
 from database.tables import create_tables
@@ -39,6 +39,13 @@ def login():
             return redirect(url_for("index"))
      
         return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("index"))
+
         
     
 @app.route('/')
