@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from userLogin import UserLogin
 from database.tables import create_tables
 from database.requests import *
+from files import save_file
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'AFAFAFFAKFAMFJASNJGN23U4U284UGS'
@@ -12,8 +13,16 @@ login_manager = LoginManager(app)
 
 @login_manager.user_loader
 def load_user(user_id):
-    print("load_user")
     return UserLogin().fromDB(int(user_id))
+
+@app.route("/upload", methods=["POST", "GET"])
+def upload():
+    if request.method == "POST":
+        file = request.files["file"]
+        img = file.read()
+        add_photo(save_file(img, file.filename))
+
+    return redirect(url_for("index"))
 
 @app.route("/login", methods=["POST", "GET"])
 def login():

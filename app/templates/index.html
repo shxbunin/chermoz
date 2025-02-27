@@ -31,6 +31,10 @@
     <div class="updates no-select">
         <div class="container no-select">
             <div class="title no-select">Последние обновления</div>
+            <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
+                <p><input type="file" name="file"></p>
+                <p><input type="submit" valut="Загрузить"></p>
+            </form>
         </div>
     </div>
     <script src="../static/js/header.js"></script>
