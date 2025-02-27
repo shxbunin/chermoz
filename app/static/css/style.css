@@ -141,6 +141,8 @@ header {
 }
 
 .nav-menu {
+    display: flex;
+    align-items: center;
     margin-left: auto;
 }
 
@@ -148,6 +150,7 @@ header {
     cursor: pointer;
     font-family: 'Futura';
     font-size: 32px;
+    color: #FFEEDE;
 }
 
 a {
@@ -200,6 +203,8 @@ a:hover {
 }
 
 .vertical-last {
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
 }
 
@@ -353,4 +358,10 @@ form {
   
   button[type="submit"]:hover {
     background-color: #45a049; /* Цвет при наведении */
+  }
+
+  .logout img {
+    margin-left: 3px;
+    padding-top: 4px;
+    width: 25px; 
   }

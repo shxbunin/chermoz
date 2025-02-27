@@ -14,7 +14,12 @@
             <span class="nav-menu no-select">
                 <span class="menu-item no-select"><a href="/">главная</a></span>
                 <span class="menu-item middle no-select"><a href="/album">фотоальбом</a></span>
+                {% if user %}
+                <span class="menu-item no-select">{{ user.username }}</span>
+                <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
+                {% else %}
                 <span class="menu-item no-select"><a href="/login">войти</a></span>
+                {% endif %}
             </span>
             <span class="nav-handler no-select" id="nav-handler">
                 <img class="no-select" id="menu-icon" src="../static/images/menu.svg" alt="">
@@ -25,7 +30,14 @@
         <div class="container no-select">
             <div class="menu-item no-select"><a href="/">главная</a></div>
             <div class="menu-item vertical-middle no-select"><a href="/album">фотоальбом</a></div>
-            <div class="menu-item vertical-last no-select"><a href="/auth">вход</a></div>
+            {% if user %}
+            <div class="logout-container vertical-last no-select">
+                <span class="menu-item no-select">{{ user.username }}</span>
+                <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
+            </div>
+            {% else %}
+            <div class="menu-item vertical-last no-select"><a href="/login">вход</a></div>
+            {% endif %}
         </div>
     </div>
     <div class="updates no-select">
