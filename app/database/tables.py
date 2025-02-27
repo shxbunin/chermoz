@@ -6,14 +6,13 @@ from config import settings
 
 engine = create_engine(url=settings.DATABASE_URL, echo=True)
 local_session = sessionmaker(engine)
-metadata = MetaData()
 
 
 class Base(DeclarativeBase):
     pass
 
 def create_tables():
-    metadata.create_all(engine)
+    Base.metadata.create_all(engine)
 
 
 #-------------------------------------------Таблицы-------------------------------------------
@@ -27,3 +26,10 @@ class Users(Base):
     admin: Mapped[bool]
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)
+
+class Photos(Base):
+    __tablename__ = 'photos'
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    path: Mapped[str] = mapped_column(String(255), unique=True)
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
