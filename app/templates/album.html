@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>chermoz</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/style.css" />
 </head>
 <body>
     <header>
         <div class="container nav no-select">
-            <span class="title no-select">Чермоз</span>
+            <span class="title no-select">ЧЕРМОЗ</span>
             <span class="nav-menu no-select">
-                <span class="menu-item no-select"><a href="/">главная</a></span>
-                <span class="menu-item middle no-select"><a href="/album">фотоальбом</a></span>
+                <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
+                <span class="menu-item middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></span>
                 {% if user %}
-                <span class="menu-item no-select">{{ user.username }}</span>
+                <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
                 {% else %}
-                <span class="menu-item no-select"><a href="/login">войти</a></span>
+                <span class="menu-item no-select login"><a href="/login">ВХОД</a></span>
                 {% endif %}
             </span>
             <span class="nav-handler no-select" id="nav-handler">
@@ -28,23 +28,103 @@
     </header>
     <div class="more no-select" id="more">
         <div class="container no-select">
-            <div class="menu-item no-select"><a href="/">главная</a></div>
-            <div class="menu-item vertical-middle no-select"><a href="/album">фотоальбом</a></div>
+            <div class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></div>
+            <div class="menu-item vertical-middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></div>
             {% if user %}
             <div class="logout-container vertical-last no-select">
-                <span class="menu-item no-select">{{ user.username }}</span>
+                <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
             </div>
             {% else %}
-            <div class="menu-item vertical-last no-select"><a href="/login">вход</a></div>
+            <div class="menu-item vertical-last no-select"><a href="/login">ВХОД</a></div>
             {% endif %}
         </div>
     </div>
     <div class="updates no-select">
         <div class="container no-select">
-            <div class="title no-select">Альбомы</div>
+            <div class="title no-select">РАЗДЕЛЫ</div>
+            <div class="albums">
+                {% if user.admin %}
+                <div class="albums-item first">
+                    <div class="plus-container">
+                        <img src="../static/images/plus.svg" alt="">
+                    </div>
+                </div>
+                {% endif %}
+                <div class="albums-item">
+                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
+                    <div class="albums-item-container">
+                        <div class="albums-item-title">Ивановы</div>
+                        <div class="albums-item-caption">Описание будет какое-то</div>
+                    </div>
+                </div>
+                <div class="albums-item">
+                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
+                    <div class="albums-item-container">
+                        <div class="albums-item-title">Ивановы</div>
+                        <div class="albums-item-caption">Описание будет какое-то</div>
+                    </div>
+                </div>
+                <div class="albums-item">
+                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
+                    <div class="albums-item-container">
+                        <div class="albums-item-title">Ивановы</div>
+                        <div class="albums-item-caption">Описание будет какое-то</div>
+                    </div>
+                </div>
+                <div class="albums-item">
+                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
+                    <div class="albums-item-container">
+                        <div class="albums-item-title">Ивановы</div>
+                        <div class="albums-item-caption">Описание будет какое-то</div>
+                    </div>
+                </div>
+                <div class="albums-item">
+                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
+                    <div class="albums-item-container">
+                        <div class="albums-item-title">Ивановы</div>
+                        <div class="albums-item-caption">Описание будет какое-то</div>
+                    </div>
+                </div>
+                <div class="albums-item">
+                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
+                    <div class="albums-item-container">
+                        <div class="albums-item-title">Ивановы</div>
+                        <div class="albums-item-caption">Описание будет какое-то</div>
+                    </div>
+                </div>
+                <div class="albums-item">
+                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
+                    <div class="albums-item-container">
+                        <div class="albums-item-title">Ивановы</div>
+                        <div class="albums-item-caption">Описание будет какое-то</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <label for="popup-title">Название раздела:</label><br/>
+            <input type="text" id="popup-title" maxlength="30" placeholder="Введите название"/><br/><br/>
+            <label for="popup-desc">Описание раздела:</label><br />
+            <textarea id="popup-desc" maxlength="100" placeholder="Введите описание"></textarea><br/><br/>
+            <button id="popup-done">Создать</button>
+        </div>
+    </div>
+
     <script src="../static/js/header.js"></script>
+    <script>
+        const firstItem = document.querySelector('.first');
+        const popup = document.getElementById('popup');
+        const doneButton = document.getElementById('popup-done');
+        firstItem.addEventListener('click', () => {
+            popup.classList.add('open');
+        });
+        doneButton.addEventListener('click', () => {
+            popup.classList.remove('open');
+        });
+    </script>
 </body>
 </html>

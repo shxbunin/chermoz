@@ -10,15 +10,15 @@
 <body>
     <header>
         <div class="container nav no-select">
-            <span class="title no-select">Чермоз</span>
+            <span class="title no-select">ЧЕРМОЗ</span>
             <span class="nav-menu no-select">
-                <span class="menu-item no-select"><a href="/">главная</a></span>
-                <span class="menu-item middle no-select"><a href="/album">фотоальбом</a></span>
+                <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
+                <span class="menu-item middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></span>
                 {% if user %}
-                <span class="menu-item no-select">{{ user.username }}</span>
+                <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
                 {% else %}
-                <span class="menu-item no-select"><a href="/login">войти</a></span>
+                <span class="menu-item no-select login"><a href="/login">ВХОД</a></span>
                 {% endif %}
             </span>
             <span class="nav-handler no-select" id="nav-handler">
@@ -28,15 +28,15 @@
     </header>
     <div class="more no-select" id="more">
         <div class="container no-select">
-            <div class="menu-item no-select"><a href="/">главная</a></div>
-            <div class="menu-item vertical-middle no-select"><a href="/album">фотоальбом</a></div>
+            <div class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></div>
+            <div class="menu-item vertical-middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></div>
             {% if user %}
             <div class="logout-container vertical-last no-select">
-                <span class="menu-item no-select">{{ user.username }}</span>
+                <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
             </div>
             {% else %}
-            <div class="menu-item vertical-last no-select"><a href="/login">вход</a></div>
+            <div class="menu-item vertical-last no-select"><a href="/login">ВХОД</a></div>
             {% endif %}
         </div>
     </div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
 	padding: 0px;
 	margin: 0px;
@@ -87,29 +89,8 @@ legend {
 	display: block;
 }
 
-@font-face {
-    font-family: 'Vetrino'; 
-    src: url('../fonts/Vetrino.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Futura'; 
-    src: url('../fonts/Futura-PT_Cond-Book.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Futura Medium'; 
-    src: url('../fonts/futuralight-light.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
-    background-color: #b4b4b4;
+    background-color: #f7f7f7;
 }
 
 .no-select {
@@ -123,7 +104,7 @@ header {
     z-index: 1000;
     position: fixed;
     width: 100%;
-    background-color: #4a4a4a;
+    background-color: #eeeeee;
 }
 
 .nav {
@@ -134,10 +115,10 @@ header {
 }
 
 .title {
-    font-family: 'Vetrino';
-    color: #FFEEDE;
-    font-size: 44px;
-    font-weight: 400;
+    font-family: 'Inter';
+    color: #222222;
+    font-size: 36px;
+    font-weight: 900;
 }
 
 .nav-menu {
@@ -148,17 +129,20 @@ header {
 
 .menu-item {
     cursor: pointer;
-    font-family: 'Futura';
-    font-size: 32px;
-    color: #FFEEDE;
+    font-family: 'Inter';
+    font-size: 15px;
+    font-weight: 550;
+    color: #222222;
 }
 
-a {
-    color: #FFEEDE;
+.login {
+    border: 2px solid #323232;
+    border-radius: 8px; 
+    padding: 8px 12px;
 }
 
-a:hover {
-    color: #a09a94;
+.menu-item a {
+    color: #222222;
 }
 
 .nav-menu .middle {
@@ -177,8 +161,8 @@ a:hover {
     z-index: 999;
     position: fixed;
     width: 100%;
-    height: 214px;
-    background-color: #3a3a3a;
+    height: 180px;
+    background-color: #e0e0e0;
     transform: translateY(-100%);
     transition: transform 0.2s ease-in-out;
 }
@@ -194,128 +178,18 @@ a:hover {
 }
 
 .container {
-    padding-left: 110px;
-    padding-right: 110px;
+    padding-left: 130px;
+    padding-right: 130px;
 }
 
 .vertical-middle {
-    margin: 10px 0;
+    margin: 12px 0;
 }
 
 .vertical-last {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-}
-
-
-
-@media (max-width: 1080px) {
-    .title {
-        font-size: 36px;
-    }
-    .nav-menu .menu-item {
-        font-size: 28px;
-    }
-
-    .nav-menu .middle {
-        margin: 0 16px;
-    }
-
-    .container {
-        padding-left: 85px;
-        padding-right: 85px;
-    }
-}
-
-@media (max-width: 900px) {
-    .nav-menu {
-        display: none;
-    }
-
-    .menu-item {
-        font-size: 28px;
-    }
-
-    .nav-handler {
-        display: block;
-    }
-
-    .container {
-        padding-left: 70px;
-        padding-right: 70px;
-    }
-}
-
-@media (max-width: 768px) {
-    .title {
-        font-size: 32px;
-    }
-
-    .container {
-        padding-left: 55px;
-        padding-right: 55px;
-    }
-
-    .menu-item {
-        font-size: 25px;
-    }
-}
-
-@media (max-width: 560px) {
-    .title {
-        font-size: 24px;
-    }
-
-    .container {
-        padding-left: 35px;
-        padding-right: 35px;
-    }
-
-    .menu-item {
-        font-size: 22px;
-    }
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1001;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: 0.2s;
-    visibility: hidden;
-}
-
-.overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-#fullImage {
-    max-width: 90%;
-    max-height: 80%;
-    margin-bottom: 10px;
-}
-
-.image-description {
-    color: #fff;
-    font-family: "Futura Medium";
-    font-size: 18px;
-    text-align: center;
-    max-width: 70%;
-    line-height: 1.4em;
-}
-
-.updates {
-    padding-top: 100px;
+    margin-bottom: 0px;
 }
 
 form {
@@ -361,7 +235,285 @@ form {
   }
 
   .logout img {
-    margin-left: 3px;
-    padding-top: 4px;
+    margin-left: 4px;
     width: 25px; 
   }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.2s;
+    visibility: hidden;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#fullImage {
+    max-width: 90%;
+    max-height: 80%;
+    margin-bottom: 10px;
+}
+
+.image-description {
+    color: #fff;
+    font-family: "Futura Medium";
+    font-size: 18px;
+    text-align: center;
+    max-width: 70%;
+    line-height: 1.4em;
+}
+
+.updates {
+    padding-top: 100px;
+}
+
+.updates .title {
+    margin-bottom: 35px;
+}
+
+/*ALBUMS*/
+
+.albums {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.albums-item {
+    background-color: #eeeeee;
+    border-radius: 10px;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+}
+
+.img-cover {
+    height: 50%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0) 100%);
+    mask-image: linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0) 100%);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.img-cover img {
+    transform: scale(1.2);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.albums-item-container {
+    padding: 20px;
+}
+
+.albums-item-title {
+    cursor: pointer;
+    font-family: 'Inter';
+    font-size: 24px;
+    font-weight: 550;
+    color: #222222;
+    margin-bottom: 10px;
+}
+
+.albums-item-caption {
+    cursor: pointer;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    color: #222222;
+    margin-bottom: 10px;
+}
+
+.first {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plus-container {
+    width: 15%;
+    height: 15%;
+}
+
+.plus-container img {
+    width: 100%;
+    height: 100%;
+
+}
+
+.popup {
+    display: none;         
+    position: fixed;         
+    z-index: 1001;             
+    top: 0;
+    left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup.open {
+    display: block;
+}
+
+.popup-content {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #fff;
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 7px;
+}
+
+.popup-content input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.popup-content textarea {
+    width: 100%;
+    box-sizing: border-box;
+    height: 80px; 
+    resize: none;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none; 
+}
+
+.popup-content button {
+    width: 100%;
+    background-color: #b4b4b4;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+
+/*adaptive*/
+
+@media (max-width: 1200px) {
+    .albums-item-title {
+        font-size: 22px;
+    }
+    
+    .albums-item-caption {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1080px) {
+    .title {
+        font-size: 32px;
+    }
+    .nav-menu .menu-item {
+        font-size: 12px;
+    }
+
+    .nav-menu .middle {
+        margin: 0 16px;
+    }
+
+    .container {
+        padding-left: 85px;
+        padding-right: 85px;
+    }
+
+    .logout img {
+        margin-left: 4px;
+        width: 22px; 
+      }
+    .albums {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .menu-item {
+        font-size: 12px;
+    }
+
+    .nav-handler {
+        display: block;
+    }
+
+    .container {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+    .logout img {
+        margin-left: 4px;
+        width: 18px; 
+    }
+    .albums {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 28px;
+    }
+
+    .container {
+        padding-left: 55px;
+        padding-right: 55px;
+    }
+
+    .menu-item {
+        font-size: 12px;
+    }
+    .albums-item-title {
+        margin-bottom: 5px;
+    }
+    
+}
+
+@media (max-width: 560px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .container {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .menu-item {
+        font-size: 12px;
+    }
+
+    .albums-item-title {
+        font-size: 18px;
+    }
+    
+    .albums-item-caption {
+        font-size: 11px;
+    }
+}
