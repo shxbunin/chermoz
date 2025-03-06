@@ -15,6 +15,14 @@ login_manager = LoginManager(app)
 def load_user(user_id):
     return UserLogin().fromDB(int(user_id))
 
+@app.route("/addSection", methods=["POST", "GET"])
+def addSection():
+    if request.method == "POST":
+        add_section(request.form["popup-title"], request.form["popup-desc"])
+        return redirect(url_for("album"))
+    else:
+        return redirect(url_for("album"))
+
 @app.route("/upload", methods=["POST", "GET"])
 def upload():
     if request.method == "POST":
@@ -50,18 +58,20 @@ def logout():
     
 @app.route('/')
 def index():
-    user = current_user.get_id()
-    if user is not None:
-        user = get_user_by_id(int(current_user.get_id()))
+    user = current_user.get_user()
     return render_template("index.html", user=user)
 
 @app.route('/album')
 #@login_required
 def album():
-    user = current_user.get_id()
-    if user is not None:
-        user = get_user_by_id(int(current_user.get_id()))
-    return render_template("album.html", user=user)
+    user = current_user.get_user()
+    sections = get_sections()
+    return render_template("album.html", user=user, sections=sections)
+
+# @app.route('/album/<int:id>')
+# def albums(id):
+#     photoAlbums = get_photos_by_albums(id)
+#     return render_template("album.html", albums=photoAlbums)
 
 def main():
     create_tables()

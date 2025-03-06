@@ -51,66 +51,30 @@
                     </div>
                 </div>
                 {% endif %}
-                <div class="albums-item">
-                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
-                    <div class="albums-item-container">
-                        <div class="albums-item-title">Ивановы</div>
-                        <div class="albums-item-caption">Описание будет какое-то</div>
+                {% for section in sections %}
+                <a href="/" class="albums-item">
+                    <div class="img-cover">
+                        <img src="{{ section.cover_path}}" alt="">
                     </div>
-                </div>
-                <div class="albums-item">
-                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
                     <div class="albums-item-container">
-                        <div class="albums-item-title">Ивановы</div>
-                        <div class="albums-item-caption">Описание будет какое-то</div>
+                        <div class="albums-item-title">{{ section.name }}</div>
+                        <div class="albums-item-caption">{{ section.description }}</div>
                     </div>
-                </div>
-                <div class="albums-item">
-                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
-                    <div class="albums-item-container">
-                        <div class="albums-item-title">Ивановы</div>
-                        <div class="albums-item-caption">Описание будет какое-то</div>
-                    </div>
-                </div>
-                <div class="albums-item">
-                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
-                    <div class="albums-item-container">
-                        <div class="albums-item-title">Ивановы</div>
-                        <div class="albums-item-caption">Описание будет какое-то</div>
-                    </div>
-                </div>
-                <div class="albums-item">
-                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
-                    <div class="albums-item-container">
-                        <div class="albums-item-title">Ивановы</div>
-                        <div class="albums-item-caption">Описание будет какое-то</div>
-                    </div>
-                </div>
-                <div class="albums-item">
-                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
-                    <div class="albums-item-container">
-                        <div class="albums-item-title">Ивановы</div>
-                        <div class="albums-item-caption">Описание будет какое-то</div>
-                    </div>
-                </div>
-                <div class="albums-item">
-                    <div class="img-cover"><img src="../static/images/cover.jpg" alt=""></div>
-                    <div class="albums-item-container">
-                        <div class="albums-item-title">Ивановы</div>
-                        <div class="albums-item-caption">Описание будет какое-то</div>
-                    </div>
-                </div>
+                </a>
+                {% endfor %}
             </div>
         </div>
     </div>
 
     <div class="popup" id="popup">
         <div class="popup-content">
-            <label for="popup-title">Название раздела:</label><br/>
-            <input type="text" id="popup-title" maxlength="30" placeholder="Введите название"/><br/><br/>
-            <label for="popup-desc">Описание раздела:</label><br />
-            <textarea id="popup-desc" maxlength="100" placeholder="Введите описание"></textarea><br/><br/>
-            <button id="popup-done">Создать</button>
+            <form action="/addSection" method="post">
+                <label for="popup-title">Название раздела:</label><br/>
+                <input type="text" id="popup-title" name="popup-title" maxlength="30" placeholder="Введите название"/><br/><br/>
+                <label for="popup-desc">Описание раздела:</label><br />
+                <textarea id="popup-desc" name="popup-desc" maxlength="100" placeholder="Введите описание"></textarea><br/><br/>
+                <button type="submit">Создать</button>
+            </form>
         </div>
     </div>
 

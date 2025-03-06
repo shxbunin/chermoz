@@ -1,5 +1,7 @@
 ﻿import datetime
-from sqlalchemy import String, func, create_engine, MetaData
+
+from django.db.models import ForeignKey
+from sqlalchemy import String, func, create_engine, MetaData, event, select
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, sessionmaker
 from config import settings
 
@@ -14,6 +16,11 @@ class Base(DeclarativeBase):
 def create_tables():
     Base.metadata.create_all(engine)
 
+@event.listens_for(Albums, 'before_insert')
+def set_album_number(mapper, connection, target):
+    stmt = select(func.count(Albums.id)).where(Albums.section_id == target.section_id)
+    count = connection.execute(stmt).scalar()
+    target.number = count + 1
 
 #-------------------------------------------Таблицы-------------------------------------------
 class Users(Base):
@@ -31,5 +38,25 @@ class Photos(Base):
     __tablename__ = 'photos'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    album_id: Mapped[int] = mapped_column(ForeignKey('albums.id'))
     path: Mapped[str] = mapped_column(String(255), unique=True)
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
+
+class Sections(Base):
+    __tablename__ = 'sections'
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String(255), unique=True)
+    description: Mapped[str] = mapped_column(String(255))
+    cover_path: Mapped[str] = mapped_column(String(255), default="../static/images/cover.jpg")
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
+    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)
+
+class Albums(Base):
+    __tablename__ = 'albums'
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    number: Mapped[int]
+    section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'))
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
+    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)
