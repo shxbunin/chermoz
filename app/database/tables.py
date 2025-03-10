@@ -1,7 +1,6 @@
 ﻿import datetime
 
-from django.db.models import ForeignKey
-from sqlalchemy import String, func, create_engine, MetaData, event, select
+from sqlalchemy import String, func, create_engine, MetaData, event, select, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, sessionmaker
 from config import settings
 
@@ -15,12 +14,6 @@ class Base(DeclarativeBase):
 
 def create_tables():
     Base.metadata.create_all(engine)
-
-@event.listens_for(Albums, 'before_insert')
-def set_album_number(mapper, connection, target):
-    stmt = select(func.count(Albums.id)).where(Albums.section_id == target.section_id)
-    count = connection.execute(stmt).scalar()
-    target.number = count + 1
 
 #-------------------------------------------Таблицы-------------------------------------------
 class Users(Base):
@@ -60,3 +53,10 @@ class Albums(Base):
     section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'))
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)
+
+
+@event.listens_for(Albums, 'before_insert')
+def set_album_number(mapper, connection, target):
+    stmt = select(func.count(Albums.id)).where(Albums.section_id == target.section_id)
+    count = connection.execute(stmt).scalar()
+    target.number = count + 1
