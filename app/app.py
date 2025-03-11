@@ -74,10 +74,13 @@ def album():
     sections = get_sections()
     return render_template("album.html", user=user, sections=sections)
 
-# @app.route('/album/<int:id>')
-# def albums(id):
-#     photoAlbums = get_photos_by_albums(id)
-#     return render_template("album.html", albums=photoAlbums)
+@app.route('/album/<int:id>')
+def albums(id):
+    user = current_user.get_id()
+    if user is not None:
+        user = get_user_by_id(int(current_user.get_id()))
+    # photoAlbums = get_photos_by_albums(id)
+    return render_template("album-template.html", user=user)
 
 def main():
     create_tables()

@@ -1,94 +1,104 @@
+/* === Import Google Fonts === */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-* {
-	padding: 0px;
-	margin: 0px;
-	border: none;
-}
-
+/* === Reset and Box Sizing === */
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
-/* Links */
-
-a, a:link, a:visited  {
+/* === Links === */
+a,
+a:link,
+a:visited,
+a:hover {
     text-decoration: none;
 }
 
-a:hover  {
-    text-decoration: none;
+/* === HTML5 Elements Display === */
+aside,
+nav,
+footer,
+header,
+section,
+main {
+    display: block;
 }
 
-/* Common */
-
-aside, nav, footer, header, section, main {
-	display: block;
-}
-
+/* === Typography === */
 h1, h2, h3, h4, h5, h6, p {
     font-size: inherit;
-	font-weight: inherit;
+    font-weight: inherit;
+    font-family: inherit;
 }
 
-ul, ul li {
-	list-style: none;
+ul,
+ul li {
+    list-style: none;
 }
 
 img {
-	vertical-align: top;
+    vertical-align: top;
 }
 
-img, svg {
-	max-width: 100%;
-	height: auto;
+img,
+svg {
+    max-width: 100%;
+    height: auto;
 }
 
 address {
-  font-style: normal;
+    font-style: normal;
 }
 
-/* Form */
-
-input, textarea, button, select {
-	font-family: inherit;
+/* === Forms === */
+input,
+textarea,
+button,
+select {
+    font-family: inherit;
     font-size: inherit;
     color: inherit;
     background-color: transparent;
 }
 
 input::-ms-clear {
-	display: none;
+    display: none;
 }
 
-button, input[type="submit"] {
+button,
+input[type="submit"] {
     display: inline-block;
     box-shadow: none;
-    background-color: transparent;
     background: none;
     cursor: pointer;
 }
 
-input:focus, input:active,
-button:focus, button:active {
+input:focus,
+input:active,
+button:focus,
+button:active {
     outline: none;
 }
 
 button::-moz-focus-inner {
-	padding: 0;
-	border: 0;
+    padding: 0;
+    border: 0;
 }
 
 label {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 legend {
-	display: block;
+    display: block;
 }
 
+/* === Body and Utility Classes === */
 body {
     background-color: #f7f7f7;
 }
@@ -100,6 +110,7 @@ body {
     -ms-user-select: none;
 }
 
+/* === Header and Nav === */
 header {
     z-index: 1000;
     position: fixed;
@@ -137,7 +148,7 @@ header {
 
 .login {
     border: 2px solid #323232;
-    border-radius: 8px; 
+    border-radius: 8px;
     padding: 8px 12px;
 }
 
@@ -154,6 +165,7 @@ header {
     display: none;
 }
 
+/* === More Menu (Mobile) === */
 .more {
     display: flex;
     align-items: center;
@@ -167,21 +179,23 @@ header {
     transition: transform 0.2s ease-in-out;
 }
 
+.more.show {
+    transform: translateY(0);
+}
+
 @media (min-width: 900px) {
     .more {
         display: none;
     }
 }
 
-.more.show {
-    transform: translateY(0);
-}
-
+/* === Container === */
 .container {
     padding-left: 130px;
     padding-right: 130px;
 }
 
+/* === Layout Helpers === */
 .vertical-middle {
     margin: 12px 0;
 }
@@ -189,56 +203,59 @@ header {
 .vertical-last {
     display: flex;
     align-items: center;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
+/* === Form Styles === */
 form {
-    max-width: 300px;        /* Устанавливаем максимальную ширину формы */
-    margin: 0 auto;          /* Располагаем форму по центру */
-    padding: 20px;           /* Внутренние отступы */
-    border: 1px solid #ccc;  /* Рамка вокруг формы */
-    background-color: #f9f9f9; /* Слегка серый фон формы */
-    border-radius: 5px;      /* Закруглённые углы */
-    font-family: Arial, sans-serif; /* Шрифт для формы */
-  }
-  
-  form div {
-    margin-bottom: 15px;     /* Отступ между полями */
-  }
-  
-  label {
-    display: block;          /* Каждое название поля на отдельной строке */
-    margin-bottom: 5px;      /* Небольшой отступ под подписью */
-    font-weight: bold;       /* Жирное начертание для подписей */
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;             /* Поля занимают всю ширину контейнера */
-    padding: 8px;            /* Внутренние отступы внутри полей */
-    box-sizing: border-box;  /* Корректный подсчёт ширины */
-    border: 1px solid #ccc;  /* Небольшая рамка вокруг полей */
-    border-radius: 3px;      /* Лёгкое скругление углов */
-  }
-  
-  button[type="submit"] {
-    padding: 8px 16px;       /* Внутренние отступы по горизонтали и вертикали */
-    background-color: #4CAF50; /* Цвет фона кнопки */
-    color: #fff;             /* Цвет текста на кнопке */
-    border: none;            /* Убираем рамку */
-    border-radius: 3px;      /* Скруглённые углы */
-    cursor: pointer;         /* Указатель в виде руки при наведении */
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #45a049; /* Цвет при наведении */
-  }
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
 
-  .logout img {
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button[type="submit"] {
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* === Logout === */
+.logout img {
     margin-left: 4px;
-    width: 25px; 
-  }
+    width: 25px;
+}
 
+/* === Overlay (for full image display) === */
 .overlay {
     position: fixed;
     top: 0;
@@ -252,8 +269,8 @@ form {
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: 0.2s;
     visibility: hidden;
+    transition: 0.2s;
 }
 
 .overlay.active {
@@ -276,6 +293,7 @@ form {
     line-height: 1.4em;
 }
 
+/* === Updates === */
 .updates {
     padding-top: 100px;
 }
@@ -284,8 +302,7 @@ form {
     margin-bottom: 35px;
 }
 
-/*ALBUMS*/
-
+/* === Albums === */
 .albums {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -299,16 +316,35 @@ form {
     overflow: hidden;
 }
 
+.gallery-item {
+    background-color: #eeeeee;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
 .img-cover {
     height: 50%;
     width: 100%;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0) 100%);
-    mask-image: linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #fff 0%, rgba(255, 255, 255, 0) 100%);
+    mask-image: linear-gradient(to bottom, #fff 0%, rgba(255, 255, 255, 0) 100%);
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
+}
+
+.photo {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.photo img {
+    transform: scale(1.2);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .img-cover img {
@@ -340,6 +376,7 @@ form {
     margin-bottom: 10px;
 }
 
+/* === First (Add New Album) === */
 .first {
     display: flex;
     justify-content: center;
@@ -354,16 +391,17 @@ form {
 .plus-container img {
     width: 100%;
     height: 100%;
-
 }
 
+/* === Popup === */
 .popup {
     display: none;
     position: fixed;
     z-index: 1001;
     top: 0;
     left: 0;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -392,10 +430,10 @@ form {
 
 .popup-content textarea {
     width: 100%;
-    box-sizing: border-box;
     height: 80px;
     resize: none;
     padding: 7px;
+    box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 3px;
     outline: none;
@@ -410,19 +448,18 @@ form {
     cursor: pointer;
 }
 
-
-/*adaptive*/
-
+/* === Adaptive Media Queries === */
+/* 1200px */
 @media (max-width: 1200px) {
     .albums-item-title {
         font-size: 22px;
     }
-    
     .albums-item-caption {
         font-size: 14px;
     }
 }
 
+/* 1080px */
 @media (max-width: 1080px) {
     .title {
         font-size: 32px;
@@ -430,89 +467,72 @@ form {
     .nav-menu .menu-item {
         font-size: 12px;
     }
-
     .nav-menu .middle {
         margin: 0 16px;
     }
-
     .container {
         padding-left: 85px;
         padding-right: 85px;
     }
-
     .logout img {
         margin-left: 4px;
-        width: 22px; 
-      }
+        width: 22px;
+    }
     .albums {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
+/* 900px */
 @media (max-width: 900px) {
     .nav-menu {
         display: none;
     }
-
     .menu-item {
         font-size: 12px;
     }
-
     .nav-handler {
         display: block;
     }
-
     .container {
         padding-left: 70px;
         padding-right: 70px;
     }
-
     .logout img {
         margin-left: 4px;
-        width: 18px; 
+        width: 18px;
     }
     .albums {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* 768px */
 @media (max-width: 768px) {
     .title {
         font-size: 28px;
     }
-
     .container {
         padding-left: 55px;
         padding-right: 55px;
     }
-
-    .menu-item {
-        font-size: 12px;
-    }
     .albums-item-title {
         margin-bottom: 5px;
     }
-    
 }
 
+/* 560px */
 @media (max-width: 560px) {
     .title {
         font-size: 24px;
     }
-
     .container {
         padding-left: 35px;
         padding-right: 35px;
     }
-
-    .menu-item {
-        font-size: 12px;
-    }
-
     .albums-item-title {
         font-size: 18px;
     }
-    
     .albums-item-caption {
         font-size: 11px;
     }
