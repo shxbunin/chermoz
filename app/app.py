@@ -42,6 +42,8 @@ def login():
             return redirect(url_for("index"))
     else:
         user = current_user.get_id()
+        if user is not None:
+            user = get_user_by_id(int(current_user.get_id()))
 
         if user is not None:
             return redirect(url_for("index"))
@@ -58,13 +60,17 @@ def logout():
     
 @app.route('/')
 def index():
-    user = current_user.get_user()
+    user = current_user.get_id()
+    if user is not None:
+        user = get_user_by_id(int(current_user.get_id()))
     return render_template("index.html", user=user)
 
 @app.route('/album')
 #@login_required
 def album():
-    user = current_user.get_user()
+    user = current_user.get_id()
+    if user is not None:
+        user = get_user_by_id(int(current_user.get_id()))
     sections = get_sections()
     return render_template("album.html", user=user, sections=sections)
 
