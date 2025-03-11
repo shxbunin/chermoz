@@ -43,46 +43,56 @@
     <div class="updates no-select">
 
         <div class="container no-select">
-            <div class="title no-select">Название альбома</div>
+            {% for album in albums %}
+            <div class="title no-select">Альбом {{ album.id }}</div>
             <div class="albums">
                 {% if user.admin %}
-                <div class="gallery-item first">
+                <div class="gallery-item first" data-album-id="{{ album.id }}">
                     <div class="plus-container">
                         <img src="../static/images/plus.svg" alt="">
                     </div>
                 </div>
                 {% endif %}
-                <div href="/" class="gallery-item photo">
-                    <img src="../static/images/cover.jpg" alt="">
+                {% for photo in photos[album.id] %}
+                <div class="gallery-item photo">
+                    <img src="{{ url_for('static', filename=photo.path) }}" alt="">
                 </div>
-                <div href="/" class="gallery-item photo">
-                    <img src="../static/images/cover.jpg" alt="">
-                </div>
-                <div href="/" class="gallery-item photo">
-                    <img src="../static/images/cover.jpg" alt="">
-                </div>
-                <div href="/" class="gallery-item photo">
-                    <img src="../static/images/cover.jpg" alt="">
-                </div>
-                <div href="/" class="gallery-item photo">
-                    <img src="../static/images/cover.jpg" alt="">
-                </div>
-                <div href="/" class="gallery-item photo">
-                    <img src="../static/images/cover.jpg" alt="">
-                </div>
-                <div href="/" class="gallery-item photo">
-                    <img src="../static/images/cover.jpg" alt="">
-                </div>
-                <div href="/" class="gallery-item photo">
-                    <img src="../static/images/cover.jpg" alt="">
-                </div>
-                <div href="/" class="gallery-item photo">
-                    <img src="../static/images/cover.jpg" alt="">
-                </div>
+                {% endfor %}
             </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="album_id" value="">
+                <input type="hidden" name="section_id" value="">
+                <input type="file" name="file">
+                <input type="submit" value="Загрузить">
+            </form>
         </div>
     </div>
 
     <script src="../static/js/header.js"></script>
+    <script>
+        const path = window.location.pathname;
+        const segments = path.split('/');
+        const id = segments[segments.length - 1];
+
+        const firstItem = document.querySelector('.first');
+        const popup = document.getElementById('popup');
+        const doneButton = document.getElementById('popup-done');
+
+        const albumInput = document.querySelector('input[name="album_id"]');
+        const sectionInput = document.querySelector('input[name="section_id"]');
+        firstItem.addEventListener('click', () => {
+            albumInput.value = firstItem.getAttribute('data-album-id');
+            sectionInput.value = id
+            popup.classList.add('open');
+        });
+        doneButton.addEventListener('click', () => {
+            popup.classList.remove('open');
+        });
+    </script>
 </body>
 </html>

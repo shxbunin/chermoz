@@ -52,7 +52,7 @@
                 </div>
                 {% endif %}
                 {% for section in sections %}
-                <a href="/" class="albums-item">
+                <a href="/album/{{ section.id }}" class="albums-item">
                     <div class="img-cover">
                         <img src="{{ section.cover_path}}" alt="">
                     </div>

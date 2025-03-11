@@ -28,7 +28,7 @@ def upload():
     if request.method == "POST":
         file = request.files["file"]
         img = file.read()
-        add_photo(save_file(img, file.filename))
+        add_photo(save_file(img, file.filename), request.form["album_id"], request.form["section_id"])
 
     return redirect(url_for("index"))
 
@@ -79,8 +79,9 @@ def albums(id):
     user = current_user.get_id()
     if user is not None:
         user = get_user_by_id(int(current_user.get_id()))
-    # photoAlbums = get_photos_by_albums(id)
-    return render_template("album-template.html", user=user)
+    albums = get_albums_by_section(id)
+    photos = get_photos_by_section(id)
+    return render_template("album-template.html", user=user, albums = albums, photos=photos)
 
 def main():
     create_tables()

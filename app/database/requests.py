@@ -1,4 +1,6 @@
-﻿from database.tables import local_session, Users, Photos, Sections, Albums
+﻿from collections import defaultdict
+
+from database.tables import local_session, Users, Photos, Sections, Albums
 from sqlalchemy import select
 
 
@@ -20,9 +22,9 @@ def get_user_by_email(email):
             print("Пользователь не найден")
             return False
 
-def add_photo(path):
+def add_photo(path, album_id, section_id):
     with local_session() as session:
-        session.add(Photos(path=path))
+        session.add(Photos(path=path, album_id=album_id, section_id=section_id))
         session.commit()
 
 def add_section(name, description):
@@ -49,3 +51,12 @@ def add_photo_in_album(album_id, path):
 def get_photos_by_albums(album_id):
     with local_session() as session:
         return session.query(Photos).filter_by(album_id=album_id).all()
+
+def get_photos_by_section(section_id):
+    with local_session() as session:
+        photos = session.query(Photos).filter_by(section_id=section_id).all()
+        album_dict = defaultdict(list)
+        for photo in photos:
+            print(photo)
+            album_dict[photo.album_id].append(photo)
+        return album_dict

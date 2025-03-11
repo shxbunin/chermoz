@@ -1,7 +1,8 @@
 ﻿from pathlib import Path
 import uuid
 
-upload_dir = Path("uploads")
+upload_dir = Path("images")
+static_dir = Path("static")
 
 
 def get_unique_filename(file_name):
@@ -9,8 +10,7 @@ def get_unique_filename(file_name):
     unique_filename = uuid.uuid4().hex + ext
     return unique_filename
 def save_file(file_content, file_name):
-    file_path = upload_dir / get_unique_filename(file_name)
-    file_path.parent.mkdir(parents=True, exist_ok=True)
+    name = get_unique_filename(file_name)
+    file_path = static_dir / upload_dir / name
     file_path.write_bytes(file_content)
-    print(file_path)
-    return str(file_path)
+    return str((upload_dir / name).as_posix())

@@ -32,6 +32,7 @@ class Photos(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     album_id: Mapped[int] = mapped_column(ForeignKey('albums.id'))
+    section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'))
     path: Mapped[str] = mapped_column(String(255), unique=True)
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
 
