@@ -12,6 +12,6 @@ def get_unique_filename(file_name):
 
 def save_file(file_content, file_name):
     name = get_unique_filename(file_name)
-    file_path = app_dir / static_dir / upload_dir / name
+    file_path = static_dir / upload_dir / name
     file_path.write_bytes(file_content)
     return str((upload_dir / name).as_posix())
