@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from userLogin import UserLogin
@@ -19,18 +19,24 @@ def load_user(user_id):
 def addSection():
     if request.method == "POST":
         add_section(request.form["popup-title"], request.form["popup-desc"])
-        return redirect(url_for("album"))
-    else:
-        return redirect(url_for("album"))
+
+    return jsonify({'redirect': request.referrer or url_for('index')})
 
 @app.route("/upload", methods=["POST", "GET"])
 def upload():
     if request.method == "POST":
         file = request.files["file"]
         img = file.read()
-        add_photo(save_file(img, file.filename), request.form["album_id"], request.form["section_id"])
+        add_photo(save_file(img, file.filename), int(request.form["album_id"]), int(request.form["section_id1"]))
 
-    return redirect(url_for("index"))
+    return jsonify({'redirect': request.referrer or url_for('index')})
+
+@app.route("/addAlbum", methods=["POST", "GET"])
+def addAlbum():
+    if request.method == "POST":
+        add_album(int(request.form["section_id2"]), request.form["popup-title"], request.form["popup-desc"])
+
+    return jsonify({'redirect': request.referrer or url_for('index')})
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -72,6 +78,7 @@ def album():
     if user is not None:
         user = get_user_by_id(int(current_user.get_id()))
     sections = get_sections()
+    sections.sort(key=lambda x: x.id)
     return render_template("album.html", user=user, sections=sections)
 
 @app.route('/album/<int:id>')

@@ -42,7 +42,7 @@ class Sections(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), unique=True)
     description: Mapped[str] = mapped_column(String(255))
-    cover_path: Mapped[str] = mapped_column(String(255), default="../static/images/cover.jpg")
+    cover_path: Mapped[str] = mapped_column(String(255), default="images/cover.jpg")
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)
 
@@ -51,6 +51,8 @@ class Albums(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     number: Mapped[int]
+    name: Mapped[str] = mapped_column(String(255))
+    description: Mapped[str] = mapped_column(String(255))
     section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'))
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)

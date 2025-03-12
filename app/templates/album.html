@@ -53,7 +53,7 @@
                 {% for section in sections %}
                 <a href="/album/{{ section.id }}" class="albums-item">
                     <div class="img-cover">
-                        <img src="{{ section.cover_path}}" alt="">
+                        <img src="{{ url_for('static', filename=section.cover_path) }}" alt="">
                     </div>
                     <div class="albums-item-container">
                         <div class="albums-item-title">{{ section.name }}</div>
@@ -85,6 +85,7 @@
         firstItem.addEventListener('click', () => {
             popup.classList.add('open');
         });
+        document.getElementById('popup-form').addEventListener('submit', router);
         doneButton.addEventListener('click', () => {
             popup.classList.remove('open');
         });
