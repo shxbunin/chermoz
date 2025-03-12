@@ -42,9 +42,9 @@
     </div>
     <div class="updates no-select">
         <div class="container no-select">
-            <div class="add">добавить</div>
+            <div class="add">Создать альбом</div>
             {% for album in albums %}
-            <div class="title no-select">Альбом {{ album.id }}</div>
+            <div class="title no-select">Альбом {{ album.name }}</div>
             <div class="albums">
                 {% if user.admin %}
                 <div class="gallery-item first" data-album-id="{{ album.id }}">
@@ -64,9 +64,10 @@
     </div>
     <div class="popup" id="popup">
         <div class="popup-content">
-            <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
+            <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data" id="popup-form1">
                 <input type="hidden" name="album_id" value="">
-                <input type="hidden" name="section_id" value="">
+                <input type="hidden" name="section_id1" value="">
+                <input type="hidden" name="redirect" value="">
                 <input type="file" name="file">
                 <input type="submit" value="Загрузить">
             </form>
@@ -74,7 +75,8 @@
     </div>
     <div class="popup" id="popup2">
         <div class="popup-content">
-            <form action="/addAlbum" method="post">
+            <form action="{{url_for("addAlbum")}}" method="post" id="popup-form2">
+                <input type="hidden" name="section_id2" value="">
                 <label for="popup-title">Название альбома:</label><br/>
                 <input type="text" id="popup-title" name="popup-title" maxlength="30" placeholder="Введите название"/><br/><br/>
                 <label for="popup-desc">Описание альбома:</label><br />
@@ -92,23 +94,27 @@
         const firstItems = document.querySelectorAll('.gallery-item.first');
         const popup = document.getElementById('popup');
         const albumInput = document.querySelector('input[name="album_id"]');
-        const sectionInput = document.querySelector('input[name="section_id"]');
+        const sectionInput1 = document.querySelector('input[name="section_id1"]');
 
         firstItems.forEach((firstItem) => {
             firstItem.addEventListener('click', () => {
                 albumInput.value = firstItem.getAttribute('data-album-id');
-                sectionInput.value = id;
+                sectionInput1.value = id;
                 popup.classList.add('open');
             });
         });
+        document.getElementById('popup-form1').addEventListener('submit', router);
 
         const add = document.querySelector('.add');
+        const sectionInput2 = document.querySelector('input[name="section_id2"]');
         const popup2 = document.getElementById('popup2');
         const doneButton2 = document.getElementById('popup-done');
 
         add.addEventListener('click', () => {
+            sectionInput2.value = id;
             popup2.classList.add('open');
         });
+        document.getElementById('popup-form2').addEventListener('submit', router);
     </script>
 </body>
 </html>

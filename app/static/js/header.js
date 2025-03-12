@@ -20,6 +20,23 @@ body.addEventListener('click', function() {
     } 
 });
 
+function router(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        history.replaceState(null, '', data.redirect);
+        location.reload();
+    })
+    .catch(error => console.error('Ошибка:', error));
+}
+
 
 
 
