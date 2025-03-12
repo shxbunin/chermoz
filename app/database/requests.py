@@ -64,3 +64,7 @@ def get_photos_by_section(section_id):
             print(photo)
             album_dict[photo.album_id].append(photo)
         return album_dict
+
+def get_recent_photos():
+    with local_session() as session:
+        return session.query(Photos).order_by(Photos.created_at.desc()).limit(10).all()

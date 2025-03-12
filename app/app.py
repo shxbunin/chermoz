@@ -69,7 +69,8 @@ def index():
     user = current_user.get_id()
     if user is not None:
         user = get_user_by_id(int(current_user.get_id()))
-    return render_template("index.html", user=user)
+    photos = get_recent_photos()
+    return render_template("index.html", user=user, photos=photos)
 
 @app.route('/album')
 #@login_required

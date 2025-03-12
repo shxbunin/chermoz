@@ -55,7 +55,7 @@
                 {% endif %}
                 {% for photo in photos[album.id] %}
                 <div class="gallery-item photo">
-                    <img src="{{ url_for('static', filename=photo.path) }}" alt="">
+                    <img src="{{ photo.path }}" alt="">
                 </div>
                 {% endfor %}
             </div>
