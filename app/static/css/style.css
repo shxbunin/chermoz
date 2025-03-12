@@ -537,3 +537,11 @@ button[type="submit"]:hover {
         font-size: 11px;
     }
 }
+
+
+.add {
+    height: 30px;
+    width: 100px;
+    background-color: #b3b3b3;
+    margin: 20px;
+}

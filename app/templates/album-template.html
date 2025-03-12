@@ -41,8 +41,8 @@
         </div>
     </div>
     <div class="updates no-select">
-
         <div class="container no-select">
+            <div class="add">добавить</div>
             {% for album in albums %}
             <div class="title no-select">Альбом {{ album.id }}</div>
             <div class="albums">
@@ -72,19 +72,28 @@
             </form>
         </div>
     </div>
+    <div class="popup" id="popup2">
+        <div class="popup-content">
+            <form action="/addAlbum" method="post">
+                <label for="popup-title">Название альбома:</label><br/>
+                <input type="text" id="popup-title" name="popup-title" maxlength="30" placeholder="Введите название"/><br/><br/>
+                <label for="popup-desc">Описание альбома:</label><br />
+                <textarea id="popup-desc" name="popup-desc" maxlength="100" placeholder="Введите описание"></textarea><br/><br/>
+                <button type="submit">Создать</button>
+            </form>
+        </div>
+    </div>
 
     <script src="../static/js/header.js"></script>
     <script>
         const path = window.location.pathname;
         const segments = path.split('/');
         const id = segments[segments.length - 1];
-
         const firstItems = document.querySelectorAll('.gallery-item.first');
         const popup = document.getElementById('popup');
-        const doneButton = document.getElementById('popup-done');
-
         const albumInput = document.querySelector('input[name="album_id"]');
         const sectionInput = document.querySelector('input[name="section_id"]');
+
         firstItems.forEach((firstItem) => {
             firstItem.addEventListener('click', () => {
                 albumInput.value = firstItem.getAttribute('data-album-id');
@@ -92,8 +101,13 @@
                 popup.classList.add('open');
             });
         });
-        doneButton.addEventListener('click', () => {
-            popup.classList.remove('open');
+
+        const add = document.querySelector('.add');
+        const popup2 = document.getElementById('popup2');
+        const doneButton2 = document.getElementById('popup-done');
+
+        add.addEventListener('click', () => {
+            popup2.classList.add('open');
         });
     </script>
 </body>
