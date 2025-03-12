@@ -75,7 +75,7 @@
     </div>
     <div class="popup" id="popup2">
         <div class="popup-content">
-            <form action="{{ url_for('addAlbum') }}" method="post">
+            <form action="{{ url_for('addAlbum') }}" method="post" id="popup-form2">
                 <input type="hidden" name="section_id2" value="">
                 <label for="popup-title">Название альбома</label>
                 <input type="text" id="popup-title" name="popup-title" maxlength="30" placeholder="Введите название"/>
