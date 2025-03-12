@@ -85,7 +85,7 @@ def albums(id):
 
 def main():
     create_tables()
-    app.run()
+    app.run(debug=True)
 
 if __name__ == '__main__':
     main()

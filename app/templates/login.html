@@ -43,19 +43,15 @@
     <div class="updates no-select">
         <div class="container no-select">
             <div class="title no-select">Вход</div>
-            <form action="/login" method="post">
-                <div>
-                    <label for="username">Логин:</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div>
-                    <label for="password">Пароль:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div>
+            <div class="login-content">
+                <form action="/login" method="post">
+                    <label for="username">Логин (Email)</label>
+                    <input type="text" id="username" name="username" placeholder="Введите логин" required>
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" placeholder="Введите пароль" required>
                     <button type="submit">Войти</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
     <script src="../static/js/header.js"></script>

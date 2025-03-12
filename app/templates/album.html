@@ -42,7 +42,6 @@
     </div>
     <div class="updates no-select">
         <div class="container no-select">
-            <div class="title no-select">РАЗДЕЛЫ</div>
             <div class="albums">
                 {% if user.admin %}
                 <div class="albums-item first">
@@ -69,11 +68,11 @@
     <div class="popup" id="popup">
         <div class="popup-content">
             <form action="/addSection" method="post">
-                <label for="popup-title">Название раздела:</label><br/>
-                <input type="text" id="popup-title" name="popup-title" maxlength="30" placeholder="Введите название"/><br/><br/>
-                <label for="popup-desc">Описание раздела:</label><br />
-                <textarea id="popup-desc" name="popup-desc" maxlength="100" placeholder="Введите описание"></textarea><br/><br/>
-                <button type="submit">Создать</button>
+                <label class="popup-title" for="popup-title">Название раздела</label>
+                <input type="text" id="popup-title" name="popup-title" maxlength="30" placeholder="Введите название"/>
+                <label for="popup-desc">Описание раздела</label>
+                <textarea id="popup-desc" name="popup-desc" maxlength="100" placeholder="Введите описание"></textarea>
+                <button type="submit">СОЗДАТЬ</button>
             </form>
         </div>
     </div>

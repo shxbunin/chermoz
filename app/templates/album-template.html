@@ -68,18 +68,18 @@
                 <input type="hidden" name="album_id" value="">
                 <input type="hidden" name="section_id" value="">
                 <input type="file" name="file">
-                <input type="submit" value="Загрузить">
+                <button type="submit">ЗАГРУЗИТЬ</button>
             </form>
         </div>
     </div>
     <div class="popup" id="popup2">
         <div class="popup-content">
             <form action="/addAlbum" method="post">
-                <label for="popup-title">Название альбома:</label><br/>
-                <input type="text" id="popup-title" name="popup-title" maxlength="30" placeholder="Введите название"/><br/><br/>
-                <label for="popup-desc">Описание альбома:</label><br />
-                <textarea id="popup-desc" name="popup-desc" maxlength="100" placeholder="Введите описание"></textarea><br/><br/>
-                <button type="submit">Создать</button>
+                <label for="popup-title">Название альбома</label>
+                <input type="text" id="popup-title" name="popup-title" maxlength="30" placeholder="Введите название"/>
+                <label for="popup-desc">Описание альбома</label>
+                <textarea id="popup-desc" name="popup-desc" maxlength="100" placeholder="Введите описание"></textarea>
+                <button type="submit">СОЗДАТЬ</button>
             </form>
         </div>
     </div>
