@@ -14,11 +14,11 @@
             <span class="nav-menu no-select">
                 <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
                 <span class="menu-item middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></span>
-                {% if user %}
+                {% if user.is_authenticated %}
                 <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
                 {% else %}
-                <span class="menu-item no-select login"><a href="/login">ВХОД</a></span>
+                <span class="menu-item no-select login"><a href="{{ url_for('login', next=request.path) }}">ВХОД</a></span>
                 {% endif %}
             </span>
             <span class="nav-handler no-select" id="nav-handler">
@@ -30,28 +30,32 @@
         <div class="container no-select">
             <div class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></div>
             <div class="menu-item vertical-middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></div>
-            {% if user %}
+            {% if user.is_authenticated %}
             <div class="logout-container vertical-last no-select">
                 <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
             </div>
             {% else %}
-            <div class="menu-item vertical-last no-select"><a href="/login">ВХОД</a></div>
+            <div class="menu-item vertical-last no-select"><a href="{{ url_for('login', next=request.path) }}">ВХОД</a></div>
             {% endif %}
         </div>
     </div>
     <div class="updates no-select">
         <div class="container no-select">
+            {% if user.admin %}
             <div class="add">Создать альбом</div>
+            {% endif %}
             {% for album in albums %}
-            <div class="title no-select">Альбом {{ album.name }}</div>
-            <div class="albums">
-                {% if user.admin %}
-                <div class="gallery-item first" data-album-id="{{ album.id }}">
-                    <div class="plus-container">
-                        <img src="../static/images/plus.svg" alt="">
+                {% if user.admin or photos[album.id]|length > 0 %}
+                <div class="title no-select">Альбом {{ album.name }}</div>
+                <div class="albums">
+                    {% if user.admin %}
+                    <div class="gallery-item first" data-album-id="{{ album.id }}">
+                        <div class="plus-container">
+                            <img src="../static/images/plus.svg" alt="">
+                        </div>
                     </div>
-                </div>
+                    {% endif %}
                 {% endif %}
                 {% for photo in photos[album.id] %}
                 <div class="gallery-item photo">

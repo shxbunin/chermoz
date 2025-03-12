@@ -14,11 +14,12 @@
             <span class="nav-menu no-select">
                 <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
                 <span class="menu-item middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></span>
-                {% if user %}
-                <span class="menu-item no-select">{{ user.username|upper }}</span>
+                {% if user.is_authenticated %}
+                <span class="menu-item no-select">{{ user.get_username |upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
                 {% else %}
-                <span class="menu-item no-select login"><a href="/login">ВХОД</a></span>
+                <span class="menu-item no-select login"><a href="/log">ВХОД</a></span>
+{#                    TODO: Сделать сохранение аргументов url#}
                 {% endif %}
             </span>
             <span class="nav-handler no-select" id="nav-handler">
@@ -30,7 +31,7 @@
         <div class="container no-select">
             <div class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></div>
             <div class="menu-item vertical-middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></div>
-            {% if user %}
+            {% if user.is_authenticated  %}
             <div class="logout-container vertical-last no-select">
                 <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
@@ -44,7 +45,7 @@
         <div class="container no-select">
             <div class="title no-select">Вход</div>
             <div class="login-content">
-                <form action="/login" method="post">
+                <form action="" method="post">
                     <label for="username">Логин (Email)</label>
                     <input type="text" id="username" name="username" placeholder="Введите логин" required>
                     <label for="password">Пароль</label>

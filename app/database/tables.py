@@ -42,7 +42,7 @@ class Sections(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), unique=True)
     description: Mapped[str] = mapped_column(String(255))
-    cover_path: Mapped[str] = mapped_column(String(255), default="images/cover.jpg")
+    cover_path: Mapped[str] = mapped_column(String(255), default="https://chermoz.storage.yandexcloud.net/gallery/cover.jpg")
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)
 

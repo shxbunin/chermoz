@@ -40,56 +40,43 @@ def addAlbum():
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
+
     if request.method == "POST":
         user = get_user_by_email(request.form["username"])
         if user and check_password_hash(user.password, request.form["password"]):
             user_login = UserLogin().create(user)
             login_user(user_login)
-            return redirect(url_for("index"))
+            return redirect(request.args.get("next") or url_for("index"))
     else:
-        user = current_user.get_id()
-        if user is not None:
-            user = get_user_by_id(int(current_user.get_id()))
-
-        if user is not None:
-            return redirect(url_for("index"))
-     
-        return render_template("login.html")
+        if current_user.is_authenticated:
+            return redirect(request.args.get("next") or url_for("index"))
+        return render_template("login.html", user=current_user)
 
 
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("index"))
+    return redirect(request.referrer)
 
         
     
 @app.route('/')
 def index():
-    user = current_user.get_id()
-    if user is not None:
-        user = get_user_by_id(int(current_user.get_id()))
     photos = get_recent_photos()
-    return render_template("index.html", user=user, photos=photos)
+    return render_template("index.html", user=current_user, photos=photos)
 
 @app.route('/album')
 #@login_required
 def album():
-    user = current_user.get_id()
-    if user is not None:
-        user = get_user_by_id(int(current_user.get_id()))
     sections = get_sections()
     sections.sort(key=lambda x: x.id)
-    return render_template("album.html", user=user, sections=sections)
+    return render_template("album.html", user=current_user, sections=sections)
 
 @app.route('/album/<int:id>')
 def albums(id):
-    user = current_user.get_id()
-    if user is not None:
-        user = get_user_by_id(int(current_user.get_id()))
     albums = get_albums_by_section(id)
     photos = get_photos_by_section(id)
-    return render_template("album-template.html", user=user, albums = albums, photos=photos)
+    return render_template("album-template.html", user=current_user, albums = albums, photos=photos)
 
 def main():
     create_tables()
