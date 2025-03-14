@@ -313,7 +313,7 @@ input[type="file"] {
 /* === Updates === */
 .updates {
     padding-top: 74px;
-    height: 800px;
+    min-height: 800px;
 }
 
 /* === Albums === */
