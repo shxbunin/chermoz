@@ -93,6 +93,8 @@
     </div>
     {% endif %}
     <script src="../static/js/header.js"></script>
+    {% if user.admin %}
     <script src="../static/js/album-popup.js"></script>
+    {% endif %}
 </body>
 </html>
