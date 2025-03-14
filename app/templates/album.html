@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <div class="container nav no-select">
+        <div class="nav no-select">
             <span class="title no-select">ЧЕРМОЗ</span>
             <span class="nav-menu no-select">
                 <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
@@ -42,6 +42,7 @@
     </div>
     <div class="updates no-select">
         <div class="container no-select">
+            <div class="subtitle no-select"></div>
             <div class="albums">
                 {% if user.admin %}
                 <div class="albums-item first">
@@ -64,7 +65,7 @@
             </div>
         </div>
     </div>
-
+    {% if user.admin %}
     <div class="popup" id="popup">
         <div class="popup-content">
             <form action="/addSection" method="post" id="popup-form">
@@ -76,19 +77,8 @@
             </form>
         </div>
     </div>
-
+    {% endif %}
     <script src="../static/js/header.js"></script>
-    <script>
-        const firstItem = document.querySelector('.first');
-        const popup = document.getElementById('popup');
-        const doneButton = document.getElementById('popup-done');
-        firstItem.addEventListener('click', () => {
-            popup.classList.add('open');
-        });
-        document.getElementById('popup-form').addEventListener('submit', router);
-        doneButton.addEventListener('click', () => {
-            popup.classList.remove('open');
-        });
-    </script>
+    <script src="../static/js/albums-popup.js"></script>
 </body>
 </html>

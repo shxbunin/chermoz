@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <div class="container nav no-select">
+        <div class="nav no-select">
             <span class="title no-select">ЧЕРМОЗ</span>
             <span class="nav-menu no-select">
                 <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
@@ -43,11 +43,11 @@
     <div class="updates no-select">
         <div class="container no-select">
             {% if user.admin %}
-            <div class="add">Создать альбом</div>
+            <div class="add-button"><div>Добавить альбом</div></div>
             {% endif %}
             {% for album in albums %}
                 {% if user.admin or photos[album.id]|length > 0 %}
-                <div class="title no-select">Альбом {{ album.name }}</div>
+                <div class="subtitle no-select">{{ album.name }}</div>
                 <div class="albums">
                     {% if user.admin %}
                     <div class="gallery-item first" data-album-id="{{ album.id }}">
@@ -64,8 +64,10 @@
                 {% endfor %}
             </div>
             {% endfor %}
+            <br><br><br>
         </div>
     </div>
+    {% if user.admin %}
     <div class="popup" id="popup">
         <div class="popup-content">
             <form action="{{ url_for('upload' )}}" method="post" enctype="multipart/form-data" id="popup-form1">
@@ -89,36 +91,8 @@
             </form>
         </div>
     </div>
-
+    {% endif %}
     <script src="../static/js/header.js"></script>
-    <script>
-        const path = window.location.pathname;
-        const segments = path.split('/');
-        const id = segments[segments.length - 1];
-        const firstItems = document.querySelectorAll('.gallery-item.first');
-        const popup = document.getElementById('popup');
-        const albumInput = document.querySelector('input[name="album_id"]');
-        const sectionInput1 = document.querySelector('input[name="section_id1"]');
-
-        firstItems.forEach((firstItem) => {
-            firstItem.addEventListener('click', () => {
-                albumInput.value = firstItem.getAttribute('data-album-id');
-                sectionInput1.value = id;
-                popup.classList.add('open');
-            });
-        });
-        document.getElementById('popup-form1').addEventListener('submit', router);
-
-        const add = document.querySelector('.add');
-        const sectionInput2 = document.querySelector('input[name="section_id2"]');
-        const popup2 = document.getElementById('popup2');
-        const doneButton2 = document.getElementById('popup-done');
-
-        add.addEventListener('click', () => {
-            sectionInput2.value = id;
-            popup2.classList.add('open');
-        });
-        document.getElementById('popup-form2').addEventListener('submit', router);
-    </script>
+    <script src="../static/js/album-popup.js"></script>
 </body>
 </html>

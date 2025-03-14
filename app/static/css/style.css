@@ -1,6 +1,6 @@
 /* === Import Google Fonts === */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 /* === Reset and Box Sizing === */
 *,
 *::before,
@@ -116,6 +116,8 @@ header {
     position: fixed;
     width: 100%;
     background-color: #eeeeee;
+    padding-left: 130px;
+    padding-right: 130px;
 }
 
 .nav {
@@ -130,6 +132,14 @@ header {
     color: #222222;
     font-size: 36px;
     font-weight: 900;
+}
+
+.subtitle {
+    font-family: 'Inter';
+    color: #2e2e2e;
+    font-size: 24px;
+    font-weight: 900;
+    margin: 30px 0 20px;
 }
 
 .nav-menu {
@@ -210,8 +220,8 @@ header {
 form {
     width: 100%;
     padding: 50px 35px;
-    border: 4px solid #000000;
-    background-color: #ffffff;
+    border: 2px solid #222;
+    background-color: #f7f7f7;
     border-radius: 26px;
 }
 
@@ -238,11 +248,12 @@ button[type="submit"] {
     color: #fff;
     border: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     width: 100%;
-    background-color: #000000;
-    border-radius: 5px;
+    height: 45px;
+    background-color: #222;
+    border-radius: 10px;
     margin-top: 20px;
     padding: 8px 16px;
     cursor: pointer;
@@ -301,11 +312,7 @@ input[type="file"] {
 
 /* === Updates === */
 .updates {
-    padding-top: 100px;
-}
-
-.updates .title {
-    margin-bottom: 35px;
+    padding-top: 74px;
 }
 
 /* === Albums === */
@@ -384,9 +391,12 @@ input[type="file"] {
 
 /* === First (Add New Album) === */
 .first {
+    cursor: pointer;;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 2px solid #808080;
+    border-radius: 7px;
 }
 
 .plus-container {
@@ -408,7 +418,7 @@ input[type="file"] {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .popup.open {
@@ -429,7 +439,7 @@ input[type="file"] {
     font-size: 14px;
     width: 100%;
     box-sizing: border-box;
-    border: 2px solid #000000;
+    border: 2px solid #848484;
     border-radius: 5px;
 }
 
@@ -440,7 +450,7 @@ input[type="file"] {
     resize: none;
     padding: 7px;
     box-sizing: border-box;
-    border: 2px solid #000000;
+    border: 2px solid #848484;
     border-radius: 5px;
     outline: none;
 }
@@ -450,6 +460,7 @@ input[type="file"] {
     font-family: 'Inter';
     font-size: 24px;
     font-weight: 600;
+    margin-top: 35px;
 }
 
 .login-content input {
@@ -461,6 +472,28 @@ input[type="file"] {
     border: 1px solid #ccc;
     border-radius: 3px;
     outline: none;
+}
+
+.add-button {
+    cursor: pointer;
+    height: 50px;
+    width: 230px;
+    background-color: #eeeeee;
+    margin-top: 35px;
+    border: 2px solid #808080;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter';
+    font-weight: 600;
+    color: #4e4e4e;
+    font-size: 18px;
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100vh; 
 }
 
 /* === Adaptive Media Queries === */
@@ -489,12 +522,19 @@ input[type="file"] {
         padding-left: 85px;
         padding-right: 85px;
     }
+    header {
+        padding-left: 85px;
+        padding-right: 85px;
+    }
     .logout img {
         margin-left: 4px;
         width: 22px;
     }
     .albums {
         grid-template-columns: repeat(3, 1fr);
+    }
+    .login-content {
+        width: 60%;
     }
 }
 
@@ -513,12 +553,19 @@ input[type="file"] {
         padding-left: 70px;
         padding-right: 70px;
     }
+    header {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
     .logout img {
         margin-left: 4px;
         width: 18px;
     }
     .albums {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .login-content {
+        width: 70%;
     }
 }
 
@@ -531,8 +578,15 @@ input[type="file"] {
         padding-left: 55px;
         padding-right: 55px;
     }
+    header {
+        padding-left: 55px;
+        padding-right: 55px;
+    }
     .albums-item-title {
         margin-bottom: 5px;
+    }
+    .login-content {
+        width: 100%;
     }
 }
 
@@ -541,7 +595,18 @@ input[type="file"] {
     .title {
         font-size: 24px;
     }
+    .subtitle {
+        margin: 20px 0 12px;
+        font-size: 18px;
+    }
+    .add-button {
+        margin-top: 20px;
+    }
     .container {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+    header {
         padding-left: 35px;
         padding-right: 35px;
     }
@@ -551,12 +616,23 @@ input[type="file"] {
     .albums-item-caption {
         font-size: 11px;
     }
+
+    .login-content {
+        font-family: 'Inter';
+        font-size: 18px;
+    }
+
+    .popup-content {
+        font-size: 18px;
+        width: 90%;
+    }
 }
 
-
-.add {
-    height: 30px;
-    width: 100px;
-    background-color: #b3b3b3;
-    margin: 20px;
+.ep {
+    font-family: 'Playfair Display';
+    font-weight: 500;
+    font-size: 38px;
+    margin: 35px 0 50px;
+    color: #222;
+    padding-right: 15%;
 }

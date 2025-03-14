@@ -9,16 +9,16 @@
 </head>
 <body>
     <header>
-        <div class="container nav no-select">
+        <div class="nav no-select">
             <span class="title no-select">ЧЕРМОЗ</span>
             <span class="nav-menu no-select">
                 <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
                 <span class="menu-item middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></span>
                 {% if user.is_authenticated %}
-                <span class="menu-item no-select">{{ user.username |upper }}</span>
+                <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
                 {% else %}
-                <span class="menu-item no-select login"><a href="{{url_for('login')}}">ВХОД</a></span>
+                <span class="menu-item no-select login"><a href="{{ url_for('login', next=request.path) }}">ВХОД</a></span>
                 {% endif %}
             </span>
             <span class="nav-handler no-select" id="nav-handler">
@@ -30,19 +30,27 @@
         <div class="container no-select">
             <div class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></div>
             <div class="menu-item vertical-middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></div>
-            {% if user %}
+            {% if user.is_authenticated %}
             <div class="logout-container vertical-last no-select">
                 <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
             </div>
             {% else %}
-            <div class="menu-item vertical-last no-select"><a href="/login">ВХОД</a></div>
+            <div class="menu-item vertical-last no-select"><a href="{{ url_for('login', next=request.path) }}">ВХОД</a></div>
             {% endif %}
         </div>
     </div>
     <div class="updates no-select">
         <div class="container no-select">
-            <div class="title no-select">Последние обновления</div>
+            <div class="ep">
+                {{
+                    "У каждого из нас на свете есть места,\n
+                    Что нам за далью лет все ближе, все дороже,\n
+                    Там дышится легко, там мира чистота,\n
+                    Нас делают на миг счастливей и моложе"|upper
+                }}
+            </div>
+            {#<div class="subtitle no-select">Последние обновления</div>#}
             <div class="albums">
                 {% for photo in photos %}
                     <a href="/album/{{ photo.section_id }}">
