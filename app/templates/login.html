@@ -18,7 +18,7 @@
                 <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
                 {% else %}
-                <span class="menu-item no-select login"><a href="{{ url_for('login', next=request.path) }}">ВХОД</a></span>
+                <span class="menu-item no-select login"><a href="">ВХОД</a></span>
                 {% endif %}
             </span>
             <span class="nav-handler no-select" id="nav-handler">
