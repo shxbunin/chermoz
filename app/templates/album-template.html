@@ -92,9 +92,43 @@
         </div>
     </div>
     {% endif %}
+    <div class="overlay no-select" id="overlay">
+        <img class="no-select" src="" alt="" id="fullImage">
+        <div class="image-description no-select" id="imageDescription"></div>
+    </div>
+    
     <script src="../static/js/header.js"></script>
     {% if user.admin %}
     <script src="../static/js/album-popup.js"></script>
     {% endif %}
+    <script>
+        const photos = document.querySelectorAll('.photo img');
+        const overlay = document.getElementById('overlay');
+        const fullImage = document.getElementById('fullImage');
+        photos.forEach(photo => {
+            photo.addEventListener('click', function() {
+                fullImage.src = this.src;
+                const nav = document.querySelector('.nav');
+                const scrollbarWidth = getScrollbarWidth();
+                const description = this.getAttribute('data-description');
+                const imageDescription = document.getElementById('imageDescription');
+                imageDescription.textContent = description;
+                overlay.classList.add('active');
+                document.body.classList.add('no-scroll');
+                document.body.style.overflow = 'hidden';
+                nav.style.paddingRight = `${scrollbarWidth}px`;
+                document.body.style.paddingRight = `${scrollbarWidth}px`;
+            });
+        });
+
+        overlay.addEventListener('click', function() {
+            overlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+            document.querySelector('.nav').style.paddingRight = '';
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            setTimeout(() => fullImage.src = '', 150); 
+        });
+    </script>
 </body>
 </html>

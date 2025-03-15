@@ -160,6 +160,19 @@ header {
     border: 2px solid #323232;
     border-radius: 8px;
     padding: 8px 12px;
+    transition-duration: 0.15s;
+}
+
+.login a{
+    transition-duration: 0.15s;
+}
+
+.login:hover {
+    background-color: #222222;
+}
+
+.login:hover a{
+    color: #ececec;
 }
 
 .menu-item a {
@@ -287,18 +300,12 @@ input[type="file"] {
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 .overlay.active {
     opacity: 1;
     visibility: visible;
-}
-
-#fullImage {
-    max-width: 90%;
-    max-height: 80%;
-    margin-bottom: 10px;
 }
 
 .image-description {
@@ -328,12 +335,24 @@ input[type="file"] {
     border-radius: 10px;
     aspect-ratio: 3 / 4;
     overflow: hidden;
+    transition-duration: 0.1s;
+}
+
+.albums-item:hover {
+    background-color: #e6e6e6;
+    /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);*/
 }
 
 .gallery-item {
     background-color: #eeeeee;
     aspect-ratio: 1 / 1;
     overflow: hidden;
+    transition-duration: 0.1s;
+}
+
+.gallery-item:hover {
+    background-color: #e6e6e6;
+    /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);*/
 }
 
 .img-cover {
@@ -349,16 +368,29 @@ input[type="file"] {
 }
 
 .photo {
+    cursor: pointer;
     height: 100%;
     width: 100%;
     overflow: hidden;
 }
 
+#fullImage {
+    max-width: 90%;
+    max-height: 80%;
+    margin-bottom: 10px;
+}
+
 .photo img {
-    transform: scale(1.2);
-    object-fit: cover;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+    transform: scale(1.2)
+}
+
+.photo img:hover {
+    transform: scale(1.25); 
 }
 
 .img-cover img {
@@ -490,6 +522,12 @@ input[type="file"] {
     font-weight: 600;
     color: #4e4e4e;
     font-size: 18px;
+    transition-duration: 0.1s;
+}
+
+.add-button:hover {
+    background-color: #e6e6e6;
+    /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);*/
 }
 
 .no-scroll {
