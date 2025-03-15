@@ -98,6 +98,7 @@
     </div>
 
     <script src="../static/js/header.js"></script>
+    <script src="../static/js/scrollbar.js"></script>
     {% if user.admin %}
     <script src="../static/js/album-popup.js"></script>
     {% endif %}
@@ -105,18 +106,6 @@
         const photos = document.querySelectorAll('.photo img');
         const overlay = document.getElementById('overlay');
         const fullImage = document.getElementById('fullImage');
-        const getScrollbarWidth = () => {
-        const scrollDiv = document.createElement('div');
-            scrollDiv.style.width = '100px';
-            scrollDiv.style.height = '100px';
-            scrollDiv.style.overflowY = 'scroll';
-            scrollDiv.style.position = 'absolute';
-            scrollDiv.style.top = '-9999px';
-            document.body.appendChild(scrollDiv);
-            const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-            document.body.removeChild(scrollDiv);
-            return scrollbarWidth;
-        };
 
         photos.forEach(photo => {
             photo.addEventListener('click', function() {
