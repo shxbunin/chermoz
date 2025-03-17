@@ -48,6 +48,7 @@
             {% for album in albums %}
                 {% if user.admin or photos[album.id]|length > 0 %}
                 <div class="subtitle no-select">{{ album.name }}</div>
+                <div class="description no-select">{{ album.description }}</div>
                 <div class="albums">
                     {% if user.admin %}
                     <div class="gallery-item first" data-album-id="{{ album.id }}">
@@ -68,25 +69,30 @@
         </div>
     </div>
     {% if user.admin %}
-    <div class="popup" id="popup">
+    <div class="popup" id="add-photo-popup">
         <div class="popup-content">
             <form action="{{ url_for('upload' )}}" method="post" enctype="multipart/form-data" id="popup-form1">
                 <input type="hidden" name="album_id" value="">
                 <input type="hidden" name="section_id1" value="">
                 <input type="hidden" name="redirect" value="">
-                <input type="file" accept="image/png, image/jpeg" name="file">
+                <label for="input-photo">Файл</label>
+                <input id="input-photo" type="file" accept="image/png, image/jpeg" name="file">
+                <br><br>
+                <label for="photo-desc">Описание фото</label>
+                <textarea id="photo-desc" name="popup-desc" maxlength="1000" placeholder="Введите описание"></textarea>
+        
                 <button type="submit">ЗАГРУЗИТЬ</button>
             </form>
         </div>
     </div>
-    <div class="popup" id="popup2">
+    <div class="popup" id="add-album-popup">
         <div class="popup-content">
             <form action="{{ url_for('addAlbum') }}" method="post" id="popup-form2">
                 <input type="hidden" name="section_id2" value="">
                 <label for="popup-title">Название альбома</label>
                 <input type="text" id="popup-title" name="popup-title" maxlength="30" placeholder="Введите название"/>
                 <label for="popup-desc">Описание альбома</label>
-                <textarea id="popup-desc" name="popup-desc" maxlength="100" placeholder="Введите описание"></textarea>
+                <textarea id="popup-desc" name="popup-desc" maxlength="1000" placeholder="Введите описание"></textarea>
                 <button type="submit">СОЗДАТЬ</button>
             </form>
         </div>
@@ -99,38 +105,10 @@
 
     <script src="../static/js/header.js"></script>
     <script src="../static/js/scrollbar.js"></script>
+    <script src="../static/js/photo-openner.js"></script>
     {% if user.admin %}
     <script src="../static/js/album-popup.js"></script>
     {% endif %}
-    <script>
-        const photos = document.querySelectorAll('.photo img');
-        const overlay = document.getElementById('overlay');
-        const fullImage = document.getElementById('fullImage');
-
-        photos.forEach(photo => {
-            photo.addEventListener('click', function() {
-                fullImage.src = this.src;
-                const nav = document.querySelector('.nav');
-                const scrollbarWidth = getScrollbarWidth();
-                const description = this.getAttribute('data-description');
-                const imageDescription = document.getElementById('imageDescription');
-                imageDescription.textContent = description;
-                overlay.classList.add('active');
-                document.body.classList.add('no-scroll');
-                document.body.style.overflow = 'hidden';
-                nav.style.paddingRight = `${scrollbarWidth}px`;
-                document.body.style.paddingRight = `${scrollbarWidth}px`;
-            });
-        });
-
-        overlay.addEventListener('click', function() {
-            overlay.classList.remove('active');
-            document.body.classList.remove('no-scroll');
-            document.querySelector('.nav').style.paddingRight = '';
-            document.body.style.overflow = '';
-            document.body.style.paddingRight = '';
-            setTimeout(() => fullImage.src = '', 150); 
-        });
-    </script>
+    
 </body>
 </html>
