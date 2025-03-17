@@ -45,7 +45,9 @@
             <div class="full-photo">
                 <img src="{{ photo.path }}" alt="">
             </div>
+            {% if photo.description %}
             <div>{{ photo.description }}</div>
+            {% endif %}
         </div>
     </div>
     <script src="../static/js/header.js"></script>
