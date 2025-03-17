@@ -28,7 +28,8 @@ def upload():
     if request.method == "POST":
         file = request.files["file"]
         img = file.read()
-        add_photo(save_file(img, file.filename), int(request.form["album_id"]), int(request.form["section_id1"]))
+        add_photo(save_file(img, file.filename), int(request.form["album_id"]),
+                  int(request.form["section_id1"]), request.form["popup-desc"])
 
     return jsonify({'redirect': request.referrer or url_for('index')})
 

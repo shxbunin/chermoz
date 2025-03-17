@@ -22,12 +22,12 @@ def get_user_by_email(email):
             print("Пользователь не найден")
             return False
 
-def add_photo(path, album_id, section_id):
+def add_photo(path, album_id, section_id, description):
     with local_session() as session:
         if session.query(Photos).filter_by(section_id=section_id).count() == 0:
             section = session.query(Sections).filter_by(id=section_id).first()
             section.cover_path = path
-        session.add(Photos(path=path, album_id=album_id, section_id=section_id))
+        session.add(Photos(path=path, album_id=album_id, section_id=section_id, description=description))
         session.commit()
 
 def add_section(name, description):
