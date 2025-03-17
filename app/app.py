@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, Response
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from userLogin import UserLogin
 from database.tables import create_tables
 from database.requests import *
 from files import save_file
+import time
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'AFAFAFFAKFAMFJASNJGN23U4U284UGS'
@@ -54,9 +55,14 @@ def login():
 
 
 @app.route("/logout")
+@login_required
 def logout():
-    logout_user()
-    return redirect(request.referrer)
+    try:
+        logout_user()
+    except Exception as e:
+        print(f"Login failed {e}")
+    finally:
+        return redirect(request.referrer)
 
         
     
@@ -77,6 +83,11 @@ def albums(id):
     albums = get_albums_by_section(id)
     photos = get_photos_by_section(id)
     return render_template("album-template.html", user=current_user, albums = albums, photos=photos)
+
+@app.route('/photo-<int:id>')
+def photo(id):
+    photo = get_photo_by_id(id)
+    return render_template("photo.html", user=current_user, photo=photo)
 
 def main():
     create_tables()
