@@ -59,7 +59,7 @@
                     {% endif %}
                 {% endif %}
                 {% for photo in photos[album.id] %}
-                    <a href="/photo-{{ photo.id }}">
+                    <a href="/photo/{{ photo.id }}">
                         <div class="gallery-item photo">
                             <img src="{{ photo.path }}" alt="">
                         </div>
@@ -73,7 +73,7 @@
     {% if user.admin %}
     <div class="popup" id="add-photo-popup">
         <div class="popup-content">
-            <form action="{{ url_for('upload' )}}" method="post" enctype="multipart/form-data" id="popup-form1">
+            <form action="{{ url_for('upload')}}" method="post" enctype="multipart/form-data" id="popup-form1">
                 <input type="hidden" name="album_id" value="">
                 <input type="hidden" name="section_id1" value="">
                 <input type="hidden" name="redirect" value="">
