@@ -84,7 +84,7 @@ def albums(id):
     photos = get_photos_by_section(id)
     return render_template("album-template.html", user=current_user, albums = albums, photos=photos)
 
-@app.route('/photo-<int:id>')
+@app.route('/photo/<int:id>')
 def photo(id):
     photo = get_photo_by_id(id)
     return render_template("photo.html", user=current_user, photo=photo)
