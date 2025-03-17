@@ -20,42 +20,54 @@ class Users(Base):
     __tablename__ = 'users'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    username: Mapped[str] = mapped_column(String(255), unique=True)
-    mail: Mapped[str] = mapped_column(String(255), unique=True)
-    password: Mapped[str]
-    admin: Mapped[bool]
-    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
-    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)
+    username: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
+    mail: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
+    password: Mapped[str] = mapped_column(String(255), nullable=False)
+    admin: Mapped[bool] = mapped_column(default=False, nullable=False)
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
+    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now, nullable=False)
 
 class Photos(Base):
     __tablename__ = 'photos'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    album_id: Mapped[int] = mapped_column(ForeignKey('albums.id'))
-    section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'))
-    path: Mapped[str] = mapped_column(String(255), unique=True)
-    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
+    album_id: Mapped[int] = mapped_column(ForeignKey('albums.id'), nullable=False)
+    section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'), nullable=False)
+    path: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
+    description: Mapped[str] = mapped_column(String(255), nullable=True)
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
+
+
+class Comments(Base):
+    __tablename__ = 'comments'
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    parent_id: Mapped[int] = mapped_column(ForeignKey('comments.id'))
+    photo_id: Mapped[int] = mapped_column(ForeignKey('photos.id'), nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False)
+    text: Mapped[str] = mapped_column(String(255), nullable=False)
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
 
 class Sections(Base):
     __tablename__ = 'sections'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(String(255), unique=True)
-    description: Mapped[str] = mapped_column(String(255))
-    cover_path: Mapped[str] = mapped_column(String(255), default="https://chermoz.storage.yandexcloud.net/gallery/cover.jpg")
-    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
-    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)
+    name: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
+    description: Mapped[str] = mapped_column(String(255), nullable=False)
+    cover_path: Mapped[str] = mapped_column(String(255), default="https://chermoz.storage.yandexcloud.net/gallery/cover.jpg", nullable=False)
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
+    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now, nullable=False)
 
 class Albums(Base):
     __tablename__ = 'albums'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    number: Mapped[int]
-    name: Mapped[str] = mapped_column(String(255))
+    number: Mapped[int] = mapped_column(nullable=False)
+    name: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[str] = mapped_column(String(255))
-    section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'))
-    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
-    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now)
+    section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'), nullable=False)
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
+    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now, nullable=False)
 
 
 @event.listens_for(Albums, 'before_insert')

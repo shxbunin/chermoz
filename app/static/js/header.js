@@ -6,18 +6,18 @@ const menu = document.getElementById('more');
 navMenuLoader.addEventListener('click', function() {
     if (menuIcon.src.endsWith('menu.svg')) {
         menu.classList.add('show');
-        setTimeout(() => { menuIcon.src = "../static/images/x.svg"; }, 100); 
+        setTimeout(() => { menuIcon.src = "../static/images/x.svg"; }, 100);
     } else {
         menu.classList.remove('show');
-        menuIcon.src = "../static/images/menu.svg"; 
+        menuIcon.src = "../static/images/menu.svg";
     }
 });
 
 body.addEventListener('click', function() {
     if (menuIcon.src.endsWith('x.svg')) {
         menu.classList.remove('show');
-        menuIcon.src = "../static/images/menu.svg"; 
-    } 
+        menuIcon.src = "../static/images/menu.svg";
+    }
 });
 
 function router(e) {

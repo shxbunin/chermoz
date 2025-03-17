@@ -68,3 +68,7 @@ def get_photos_by_section(section_id):
 def get_recent_photos():
     with local_session() as session:
         return session.query(Photos).order_by(Photos.created_at.desc()).limit(10).all()
+
+def get_photo_by_id(id):
+    with local_session() as session:
+        return session.query(Photos).filter_by(id=id).first()
