@@ -383,6 +383,14 @@ input[type="file"] {
     overflow: hidden;
 }
 
+.full-photo{
+    cursor: pointer;
+    padding-top: 20px;
+    max-height: 1080px;
+    max-width: 80%;
+    overflow: hidden;
+}
+
 #fullImage {
     max-width: 90%;
     max-height: 80%;
