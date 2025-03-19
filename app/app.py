@@ -55,6 +55,7 @@ def login():
             user_login = UserLogin().create(user)
             login_user(user_login)
             return redirect(request.args.get("next") or url_for("index"))
+        return render_template("login.html", user=current_user)
     else:
         if current_user.is_authenticated:
             return redirect(request.args.get("next") or url_for("index"))
