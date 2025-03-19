@@ -104,6 +104,14 @@ def delete_photo():
     delete_photo_db(int(photo_id))
     return jsonify({'status': 'ok', 'result': f'Photo {photo_id} processed'})
 
+@app.route('/edit_desc', methods=['POST'])
+def edit_desc():
+    data = request.get_json() or {}
+    photo_id = data.get('id')
+    desc = data.get('desc')
+    edit_photo_desc(int(photo_id), desc)
+    return jsonify({'status': 'ok', 'result': f'Photo {photo_id} desc edited'})
+
 def main():
     create_tables()
     app.run(debug=True)

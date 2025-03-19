@@ -89,3 +89,9 @@ def delete_photo_db(photo_id):
                 section.cover_path = "https://chermoz.storage.yandexcloud.net/gallery/cover.jpg"
             session.delete(photo)
             session.commit()
+
+def edit_photo_desc(photo_id, description):
+    with local_session() as session:
+        photo = session.query(Photos).filter_by(id=photo_id).first()
+        photo.description = description
+        session.commit()

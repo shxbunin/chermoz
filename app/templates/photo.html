@@ -55,7 +55,7 @@
             </div>
 
             {% if user.admin %}
-            <div id="editButton" onclick="toggleEditing()" class="add-button">
+            <div id="editButton" data-photo-id="{{ photo.id }}" class="add-button">
                 <div>Редактировать</div>
             </div>
             {% endif %}
@@ -64,22 +64,6 @@
         </div>
     </div>
     <script src="../static/js/header.js"></script>
-    <script>
-        function toggleEditing() {
-            const desc = document.getElementById('desc');
-            const descEdit = document.getElementById('desc-edit');
-            const editButton = document.getElementById('editButton');
-            
-            if (desc.style.display === 'block') {
-                desc.style.display = 'none';
-                descEdit.style.display = 'block';
-                editButton.innerText = 'Сохранить';
-            } else {
-                desc.style.display = 'block';
-                descEdit.style.display = 'none';
-                editButton.innerText = 'Редактировать';
-            }
-        }
-    </script>
+    <script src="../static/js/edit-button-func.js"></script>
 </body>
 </html>
