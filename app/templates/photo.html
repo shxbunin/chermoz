@@ -46,7 +46,7 @@
                 <img src="{{ photo.path }}" alt="">
             </div>
             
-            <div id="desc-edit" class="description photo-description" style="display: none;">
+            <div id="desc-edit" style="display: none;">
                 <textarea id="desc-textarea" class="description photo-description">{{ photo.description }}</textarea>
             </div>
 
@@ -59,27 +59,48 @@
                 <div>Редактировать</div>
             </div>
             {% endif %}
-
+            <br><br><br><br>
             
         </div>
     </div>
     <script src="../static/js/header.js"></script>
     <script>
         function toggleEditing() {
-            const desc = document.getElementById('desc');
-            const descEdit = document.getElementById('desc-edit');
-            const editButton = document.getElementById('editButton');
-            
-            if (desc.style.display === 'block') {
-                desc.style.display = 'none';
-                descEdit.style.display = 'block';
-                editButton.innerText = 'Сохранить';
-            } else {
-                desc.style.display = 'block';
-                descEdit.style.display = 'none';
-                editButton.innerText = 'Редактировать';
-            }
+          const desc = document.getElementById('desc');
+          const descEdit = document.getElementById('desc-edit');
+          const editButton = document.getElementById('editButton');
+          const textarea = document.getElementById('desc-textarea');
+      
+          if (desc.style.display === 'block') {
+            // Переходим в режим редактирования
+            desc.style.display = 'none';
+            descEdit.style.display = 'block';
+            editButton.innerText = 'Сохранить';
+      
+            // Принудительно пересчитываем высоту при первом показе
+            autoResize(textarea);
+      
+          } else {
+            // Выходим из режима редактирования
+            desc.style.display = 'block';
+            descEdit.style.display = 'none';
+            editButton.innerText = 'Редактировать';
+          }
         }
-    </script>
+      
+        // Функция, пересчитывающая высоту textarea
+        function autoResize(el) {
+          // Сбрасываем высоту, чтобы scrollHeight считался корректно
+          el.style.height = 'auto';
+          // Увеличиваем высоту в пикселях, исходя из «прокрутки» содержимого
+          el.style.height = el.scrollHeight + 10 + 'px';
+        }
+      
+        const textarea = document.getElementById('desc-textarea');
+        // При каждом вводе текста пересчитываем высоту
+        textarea.addEventListener('input', () => {
+          autoResize(textarea);
+        });
+      </script>
 </body>
 </html>
