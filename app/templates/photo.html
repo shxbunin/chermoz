@@ -64,64 +64,6 @@
         </div>
     </div>
     <script src="../static/js/header.js"></script>
-    <script>
-        function toggleEditing() {
-          const desc = document.getElementById('desc');
-          const descEdit = document.getElementById('desc-edit');
-          const editButton = document.getElementById('editButton');
-          const textarea = document.getElementById('desc-textarea');
-      
-          if (desc.style.display === 'block') {
-            // Переходим в режим редактирования
-            desc.style.display = 'none';
-            descEdit.style.display = 'block';
-            editButton.innerText = 'Сохранить';
-      
-            // Принудительно пересчитываем высоту при первом показе
-            autoResize(textarea);
-      
-          } else {
-            const newText = textarea.value
-            editDesc(editButton, newText)
-            desc.innerText = newText;
-            desc.style.display = 'block';
-            descEdit.style.display = 'none';
-            editButton.innerText = 'Редактировать';
-          }
-        }
-      
-        // Функция, пересчитывающая высоту textarea
-        function autoResize(el) {
-          // Сбрасываем высоту, чтобы scrollHeight считался корректно
-          el.style.height = 'auto';
-          // Увеличиваем высоту в пикселях, исходя из «прокрутки» содержимого
-          el.style.height = el.scrollHeight + 10 + 'px';
-        }
-      
-        const textarea = document.getElementById('desc-textarea');
-        // При каждом вводе текста пересчитываем высоту
-        textarea.addEventListener('input', () => {
-          autoResize(textarea);
-        });
-
-        async function editDesc(btn, desc) {
-            const photoId = btn.dataset.photoId;
-
-            try {
-                const res = await fetch('/edit_desc', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: photoId, desc: desc})
-                });
-
-                const { status, result } = await res.json();
-                console.log('Ответ сервера:', status, result);
-            } catch (err) {
-                console.error('Ошибка отправки:', err);
-            }
-        }
-        document.getElementById('editButton').onclick = toggleEditing;
-      </script>
-    <!-- <script src="../static/js/edit-button-func.js"></script> -->
+    <script src="../static/js/edit-button-func.js"></script>
 </body>
 </html>
