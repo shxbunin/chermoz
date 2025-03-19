@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="nav no-select">
-            <span class="title no-select">ЧЕРМОЗ</span>
+            <span class="title no-select">ЧЕРМОЗ<p>И ЧЕРМОЗЯНЕ</p></span>
             <span class="nav-menu no-select">
                 <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
                 <span class="menu-item middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></span>
@@ -46,7 +46,7 @@
                 <img src="{{ photo.path }}" alt="">
             </div>
             {% if photo.description %}
-            <div>{{ photo.description }}</div>
+            <div class="description photo-decription">{{ photo.description }}</div>
             {% endif %}
         </div>
     </div>

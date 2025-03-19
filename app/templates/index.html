@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="nav no-select">
-            <span class="title no-select">ЧЕРМОЗ</span>
+            <span class="title no-select">ЧЕРМОЗ<p>И ЧЕРМОЗЯНЕ</p></span>
             <span class="nav-menu no-select">
                 <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
                 <span class="menu-item middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></span>
@@ -43,14 +43,11 @@
     <div class="updates no-select">
         <div class="container no-select">
             <div class="ep">
-                {{
-                    "У каждого из нас на свете есть места,\n
-                    Что нам за далью лет все
-                    ближе, все дороже,\n
-                    Там дышится легко, там мира чистота,\n
-                    Нас делают на миг счастливей и моложе"|upper
-                }}
-            </div>
+                    У каждого из нас на свете есть места,<br>
+                    Что нам за далью лет все ближе, все дороже,<br>
+                    Там дышится легко, там мира чистота,<br>
+                    Нас делают на миг счастливей и моложе
+                </div>
             {#<div class="subtitle no-select">Последние обновления</div>#}
             <div class="albums">
                 {% for photo in photos %}

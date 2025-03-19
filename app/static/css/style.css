@@ -128,10 +128,18 @@ header {
 }
 
 .title {
+    display: flex;
     font-family: 'Inter';
     color: #222222;
     font-size: 36px;
     font-weight: 900;
+    align-items: baseline;
+}
+
+.title p {
+    margin-left: 8px;
+    font-weight: 800;
+    font-size: 18px;
 }
 
 .subtitle {
@@ -149,6 +157,11 @@ header {
     font-weight: 600;
     margin: 0 0 20px;
     width: 70%;
+}
+
+.photo-decription {
+    max-width: 50%;
+    margin-bottom: 100px;
 }
 
 .nav-menu {
@@ -383,12 +396,17 @@ input[type="file"] {
     overflow: hidden;
 }
 
-.full-photo{
+.full-photo {
     cursor: pointer;
     padding-top: 20px;
-    max-height: 1080px;
-    max-width: 80%;
+    width: 50%;
     overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.full-photo img {
+    width: 100%;
+    height: 100%;
 }
 
 #fullImage {
@@ -687,8 +705,8 @@ input[type="file"] {
 .ep {
     font-family: 'Playfair Display';
     font-weight: 500;
-    font-size: 38px;
+    font-size: 24px;
     margin: 35px 0 50px;
     color: #222;
-    padding-right: 15%;
+    padding-right: 30%;
 }
