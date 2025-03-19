@@ -62,6 +62,13 @@
                     <a href="/photo/{{ photo.id }}">
                         <div class="gallery-item photo">
                             <img src="{{ photo.path }}" alt="">
+                            {% if user.admin %}
+                            <button type="button" class="more-btn" aria-label="Меню">⋮</button>
+                              <ul class="context-menu">
+                                <li><button type="button" data-photo-id="{{ photo.id }}" onclick="changeCover(this)">Сделать обложкой</button></li>
+                                <li><button type="button" data-photo-id="{{ photo.id }}" onclick="deletePhoto(this)">Удалить</button></li>
+                              </ul>
+                            {% endif %}
                         </div>
                     </a>
                 {% endfor %}
@@ -110,6 +117,8 @@
     {# <script src="../static/js/photo-openner.js"></script> #}
     {% if user.admin %}
     <script src="../static/js/album-popup.js"></script>
+    <script src="../static/js/context-menu.js"></script>
+    <script src="../static/js/context-menu-func.js"></script>
     {% endif %}
     
 </body>

@@ -72,3 +72,20 @@ def get_recent_photos():
 def get_photo_by_id(id):
     with local_session() as session:
         return session.query(Photos).filter_by(id=id).first()
+
+def change_album_cover(photo_id):
+    with local_session() as session:
+        photo = session.query(Photos).filter_by(id=photo_id).first()
+        section = session.query(Sections).filter_by(id=photo.section_id).first()
+        section.cover_path = photo.path
+        session.commit()
+
+def delete_photo_db(photo_id):
+    with local_session() as session:
+        photo = session.query(Photos).filter_by(id=photo_id).first()
+        section = session.query(Sections).filter_by(id=photo.section_id).first()
+        if photo:
+            if section.cover_path == photo.path:
+                section.cover_path = "https://chermoz.storage.yandexcloud.net/gallery/cover.jpg"
+            session.delete(photo)
+            session.commit()

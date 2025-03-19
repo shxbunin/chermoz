@@ -90,6 +90,20 @@ def photo(id):
     photo = get_photo_by_id(id)
     return render_template("photo.html", user=current_user, photo=photo)
 
+@app.route('/change_cover', methods=['POST'])
+def change_cover():
+    data = request.get_json() or {}
+    photo_id = data.get('id')
+    change_album_cover(int(photo_id))
+    return jsonify({'status': 'ok', 'result': f'Photo {photo_id} processed'})
+
+@app.route('/delete_photo', methods=['POST'])
+def delete_photo():
+    data = request.get_json() or {}
+    photo_id = data.get('id')
+    delete_photo_db(int(photo_id))
+    return jsonify({'status': 'ok', 'result': f'Photo {photo_id} processed'})
+
 def main():
     create_tables()
     app.run(debug=True)
