@@ -55,7 +55,7 @@
             </div>
 
             {% if user.admin %}
-            <div id="editButton" onclick="toggleEditing()" class="add-button">
+            <div id="editButton" data-photo-id="{{ photo.id }}" class="add-button">
                 <div>Редактировать</div>
             </div>
             {% endif %}
@@ -81,7 +81,9 @@
             autoResize(textarea);
       
           } else {
-            // Выходим из режима редактирования
+            const newText = textarea.value
+            editDesc(editButton, newText)
+            desc.innerText = newText;
             desc.style.display = 'block';
             descEdit.style.display = 'none';
             editButton.innerText = 'Редактировать';
@@ -101,6 +103,25 @@
         textarea.addEventListener('input', () => {
           autoResize(textarea);
         });
+
+        async function editDesc(btn, desc) {
+            const photoId = btn.dataset.photoId;
+
+            try {
+                const res = await fetch('/edit_desc', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: photoId, desc: desc})
+                });
+
+                const { status, result } = await res.json();
+                console.log('Ответ сервера:', status, result);
+            } catch (err) {
+                console.error('Ошибка отправки:', err);
+            }
+        }
+        document.getElementById('editButton').onclick = toggleEditing;
       </script>
+    <!-- <script src="../static/js/edit-button-func.js"></script> -->
 </body>
 </html>
