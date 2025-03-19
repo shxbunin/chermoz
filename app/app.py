@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, Response
+from flask import Flask, render_template, request, redirect, url_for, jsonify, Response, abort
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from userLogin import UserLogin
@@ -18,6 +18,8 @@ def load_user(user_id):
 
 @app.route("/addSection", methods=["POST", "GET"])
 def addSection():
+    if not current_user.is_authenticated or not current_user.admin:
+        abort(403)
     if request.method == "POST":
         add_section(request.form["popup-title"], request.form["popup-desc"])
 
@@ -25,6 +27,8 @@ def addSection():
 
 @app.route("/upload", methods=["POST", "GET"])
 def upload():
+    if not current_user.is_authenticated or not current_user.admin:
+        abort(403)
     if request.method == "POST":
         file = request.files["file"]
         img = file.read()
@@ -35,6 +39,8 @@ def upload():
 
 @app.route("/addAlbum", methods=["POST", "GET"])
 def addAlbum():
+    if not current_user.is_authenticated or not current_user.admin:
+        abort(403)
     if request.method == "POST":
         add_album(int(request.form["section_id2"]), request.form["popup-title"], request.form["popup-desc"])
 
@@ -92,6 +98,8 @@ def photo(id):
 
 @app.route('/change_cover', methods=['POST'])
 def change_cover():
+    if not current_user.is_authenticated or not current_user.admin:
+        return jsonify({'status': 'fail', 'result': f'You dont have the permission to access the requested resource'})
     data = request.get_json() or {}
     photo_id = data.get('id')
     change_album_cover(int(photo_id))
@@ -99,6 +107,8 @@ def change_cover():
 
 @app.route('/delete_photo', methods=['POST'])
 def delete_photo():
+    if not current_user.is_authenticated or not current_user.admin:
+        return jsonify({'status': 'fail', 'result': f'You dont have the permission to access the requested resource'})
     data = request.get_json() or {}
     photo_id = data.get('id')
     delete_photo_db(int(photo_id))
@@ -106,6 +116,8 @@ def delete_photo():
 
 @app.route('/edit_desc', methods=['POST'])
 def edit_desc():
+    if not current_user.is_authenticated or not current_user.admin:
+        return jsonify({'status': 'fail', 'result': f'You dont have the permission to access the requested resource'})
     data = request.get_json() or {}
     photo_id = data.get('id')
     desc = data.get('desc')
