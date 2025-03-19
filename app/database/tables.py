@@ -1,6 +1,6 @@
 ﻿import datetime
 
-from sqlalchemy import String, func, create_engine, MetaData, event, select, ForeignKey
+from sqlalchemy import String, func, create_engine, MetaData, event, select, ForeignKey, Text
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, sessionmaker
 from config import settings
 
@@ -34,7 +34,7 @@ class Photos(Base):
     album_id: Mapped[int] = mapped_column(ForeignKey('albums.id'), nullable=False)
     section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'), nullable=False)
     path: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
-    description: Mapped[str] = mapped_column(String(255), nullable=True)
+    description: Mapped[str] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
 
 
@@ -45,7 +45,7 @@ class Comments(Base):
     parent_id: Mapped[int] = mapped_column(ForeignKey('comments.id'))
     photo_id: Mapped[int] = mapped_column(ForeignKey('photos.id'), nullable=False)
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False)
-    text: Mapped[str] = mapped_column(String(255), nullable=False)
+    text: Mapped[str] = mapped_column(Text, nullable=False)
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
 
 class Sections(Base):
@@ -53,7 +53,7 @@ class Sections(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
-    description: Mapped[str] = mapped_column(String(255), nullable=False)
+    description: Mapped[str] = mapped_column(Text, nullable=False)
     cover_path: Mapped[str] = mapped_column(String(255), default="https://chermoz.storage.yandexcloud.net/gallery/cover.jpg", nullable=False)
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
     updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now, nullable=False)
@@ -64,7 +64,7 @@ class Albums(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     number: Mapped[int] = mapped_column(nullable=False)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
-    description: Mapped[str] = mapped_column(String(255))
+    description: Mapped[str] = mapped_column(Text, nullable=True)
     section_id: Mapped[int] = mapped_column(ForeignKey('sections.id'), nullable=False)
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
     updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=datetime.datetime.now, nullable=False)
