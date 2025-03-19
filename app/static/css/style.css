@@ -771,6 +771,14 @@ input[type="file"] {
     pointer-events: auto;
 }
 
+.photo-description { 
+    margin-top: 20px;
+    width: 50%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal; 
+}
+
 textarea.photo-description {
     width: 50%;
     resize: none;
