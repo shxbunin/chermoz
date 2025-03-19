@@ -370,11 +370,16 @@ input[type="file"] {
     aspect-ratio: 1 / 1;
     overflow: hidden;
     transition-duration: 0.1s;
+    position: relative;
 }
 
 .gallery-item:hover {
     background-color: #e6e6e6;
-    /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);*/
+}
+
+.gallery-item:hover .more-btn {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .img-cover {
@@ -422,10 +427,6 @@ input[type="file"] {
     transition: transform 0.3s ease;
     transform-origin: center;
     transform: scale(1.2)
-}
-
-.photo img:hover {
-    transform: scale(1.25); 
 }
 
 .img-cover img {
@@ -709,4 +710,69 @@ input[type="file"] {
     margin: 35px 0 50px;
     color: #222;
     padding-right: 30%;
+}
+
+.context-menu {
+  position: absolute;
+  top: 32px;
+  right: 8px;
+  width: 120px;               /* фиксированная ширина */
+  background: #ccc;           /* тот же серый фон */
+  border: none;
+  border-radius: 4px;         /* совпадает с кнопкой */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 4px 0;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.context-menu.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.context-menu li {
+  margin: 0;
+}
+
+.context-menu button {
+  width: 100%;
+  font-family: 'Inter';
+  color: #000000;
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.context-menu button:hover {
+  background: #bbb;            /* чуть темнее для hover */
+}
+
+.more-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;           /* ширина */
+  height: 32px;          /* высота — то же, что и ширина */
+  background: #ccc;
+  border: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 4px;     /* убрать или поставить 0 для острых углов */
+}
+
+.more-btn.show {
+  opacity: 1 !important;
+  pointer-events: auto;
 }
