@@ -45,11 +45,41 @@
             <div class="full-photo">
                 <img src="{{ photo.path }}" alt="">
             </div>
-            {% if photo.description %}
-            <div class="description photo-decription">{{ photo.description }}</div>
+            
+            <div id="desc-edit" class="description photo-description" style="display: none;">
+                <textarea id="desc-textarea" class="description photo-description">{{ photo.description }}</textarea>
+            </div>
+
+            <div id="desc" class="description photo-description" style="display: block;">
+                {{ photo.description }}
+            </div>
+
+            {% if user.admin %}
+            <div id="editButton" onclick="toggleEditing()" class="add-button">
+                <div>Редактировать</div>
+            </div>
             {% endif %}
+
+            
         </div>
     </div>
     <script src="../static/js/header.js"></script>
+    <script>
+        function toggleEditing() {
+            const desc = document.getElementById('desc');
+            const descEdit = document.getElementById('desc-edit');
+            const editButton = document.getElementById('editButton');
+            
+            if (desc.style.display === 'block') {
+                desc.style.display = 'none';
+                descEdit.style.display = 'block';
+                editButton.innerText = 'Сохранить';
+            } else {
+                desc.style.display = 'block';
+                descEdit.style.display = 'none';
+                editButton.innerText = 'Редактировать';
+            }
+        }
+    </script>
 </body>
 </html>
