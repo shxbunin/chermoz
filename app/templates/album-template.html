@@ -57,7 +57,6 @@
                         </div>
                     </div>
                     {% endif %}
-                {% endif %}
                 {% for photo in photos[album.id] %}
                     <a href="/photo/{{ photo.id }}">
                         <div class="gallery-item photo">
@@ -74,6 +73,7 @@
                 {% endfor %}
             </div>
             {% endfor %}
+            {% endif %}
             <br><br><br>
         </div>
     </div>
