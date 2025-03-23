@@ -789,3 +789,12 @@ textarea.photo-description {
     outline: none;
     margin-bottom: 0;
 }
+
+#pdf-container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+canvas {
+    width: 100%;
+}

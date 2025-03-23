@@ -58,6 +58,44 @@
                     </a>
                 {% endfor %}
             </div>
+            <div id="pdf-container"></div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.js"></script>
+
+            <script>
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.js';
+                const pdfUrl = '../static/images/1.pdf';
+              
+                pdfjsLib.getDocument(pdfUrl).promise
+                  .then(function(pdf) {
+                    const container = document.getElementById('pdf-container');
+                    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+                      pdf.getPage(pageNumber).then(function(page) {
+                        const scale = 1.5;
+                        const viewport = page.getViewport({ scale: scale });
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+              
+                        canvas.width = viewport.width;
+                        canvas.height = viewport.height;
+
+                        container.appendChild(canvas);
+              
+                        const renderContext = {
+                          canvasContext: context,
+                          viewport: viewport
+                        };
+              
+                        page.render(renderContext).promise.then(function() {
+                          console.log('Страница ' + pageNumber + ' успешно отрисована!');
+                        });
+                      });
+                    }
+                  })
+                  .catch(function(error) {
+                    console.error('Ошибка при загрузке/отрисовке PDF: ', error);
+                  });
+              </script>
         </div>
     </div>
     <script src="../static/js/header.js"></script>
