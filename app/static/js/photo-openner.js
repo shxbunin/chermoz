@@ -1,7 +1,6 @@
-const photos = document.querySelectorAll('.photo img');
+const photos = document.querySelectorAll('.full-photo img');
 const overlay = document.getElementById('overlay');
 const fullImage = document.getElementById('fullImage');
-const desc = document.getElementById('imageDescription')
 const nav = document.querySelector('.nav');
 
 photos.forEach(photo => {
@@ -9,7 +8,6 @@ photos.forEach(photo => {
         const scrollbarWidth = getScrollbarWidth();
 
         fullImage.src = this.src;
-        desc.textContent = this.getAttribute('data-description');
         overlay.classList.add('active');
         document.body.classList.add('no-scroll');
         document.body.style.overflow = 'hidden';

@@ -10,10 +10,11 @@
 <body>
     <header>
         <div class="nav no-select">
-            <span class="title no-select">ЧЕРМОЗ<p>И ЧЕРМОЗЯНЕ</p></span>
+            <span class="title no-select"><img src="../static/images/logo.svg" alt=""></span>
             <span class="nav-menu no-select">
                 <span class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></span>
-                <span class="menu-item middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></span>
+                <span class="menu-item no-select"><a href="/album">ФОТОАЛЬБОМ</a></span>
+                <span class="menu-item no-select"><a href="/essay">ОЧЕРКИ</a></span>
                 {% if user.is_authenticated %}
                 <span class="menu-item no-select">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
@@ -28,15 +29,16 @@
     </header>
     <div class="more no-select" id="more">
         <div class="container no-select">
-            <div class="menu-item no-select"><a href="/">ГЛАВНАЯ</a></div>
-            <div class="menu-item vertical-middle no-select"><a href="/album">ФОТОАЛЬБОМ</a></div>
+            <div class="menu-item vertical no-select"><a href="/">ГЛАВНАЯ</a></div>
+            <div class="menu-item vertical no-select"><a href="/album">ФОТОАЛЬБОМ</a></div>
+            <div class="menu-item vertical no-select"><a href="/essay">ОЧЕРКИ</a></div>
             {% if user.is_authenticated %}
-            <div class="logout-container vertical-last no-select">
-                <span class="menu-item no-select">{{ user.username|upper }}</span>
+            <div class="logout-container no-select">
+                <span class="menu-item vertical">{{ user.username|upper }}</span>
                 <span class="logout no-select"><a href="/logout"><img src="../static/images/logout.svg" alt=""></a></span>
             </div>
             {% else %}
-            <div class="menu-item vertical-last no-select"><a href="{{ url_for('login', next=request.path) }}">ВХОД</a></div>
+            <div class="menu-item vertical no-select"><a href="{{ url_for('login', next=request.path) }}">ВХОД</a></div>
             {% endif %}
         </div>
     </div>

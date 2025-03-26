@@ -61,7 +61,6 @@ def login():
             return redirect(request.args.get("next") or url_for("index"))
         return render_template("login.html", user=current_user)
 
-
 @app.route("/logout")
 @login_required
 def logout():
@@ -71,8 +70,6 @@ def logout():
         print(f"Login failed {e}")
     finally:
         return redirect(request.referrer)
-
-        
     
 @app.route('/')
 def index():
@@ -80,7 +77,6 @@ def index():
     return render_template("index.html", user=current_user, photos=photos)
 
 @app.route('/album')
-#@login_required
 def album():
     sections = get_sections()
     sections.sort(key=lambda x: x.id)
@@ -91,6 +87,14 @@ def albums(id):
     albums = get_albums_by_section(id)
     photos = get_photos_by_section(id)
     return render_template("album-template.html", user=current_user, albums = albums, photos=photos)
+
+@app.route('/essay')
+def essay():
+    return render_template("essay.html", user=current_user)
+
+# @app.route('/essay/<int:id>')
+# def essays(id):
+#     return render_template("essay-template.html", user=current_user, essay = essay)
 
 @app.route('/photo/<int:id>')
 def photo(id):
