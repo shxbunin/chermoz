@@ -38,6 +38,16 @@ class Photos(Base):
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
 
 
+class Essays(Base):
+    __tablename__ = 'essays'
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String(255), nullable=False)
+    path: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
+    description: Mapped[str] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), nullable=False)
+
+
 class Comments(Base):
     __tablename__ = 'comments'
 

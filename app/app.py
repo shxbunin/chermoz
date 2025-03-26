@@ -29,11 +29,29 @@ def addSection():
 def upload():
     if not current_user.is_authenticated or not current_user.admin:
         abort(403)
+
+    if request.method == "POST":
+        files = request.files.getlist("file")
+        album_id = int(request.form["album_id"])
+        section_id = int(request.form["section_id1"])
+        description = request.form["popup-desc"]
+
+        for file in files:
+            if file and file.filename:
+                img = file.read()
+                path = save_file(img, file.filename)
+                add_photo(path, album_id, section_id, description)
+
+    return jsonify({'redirect': request.referrer or url_for('index')})
+
+@app.route("/uploadEssay", methods=["POST", "GET"])
+def uploadEssay():
+    if not current_user.is_authenticated or not current_user.admin:
+        abort(403)
     if request.method == "POST":
         file = request.files["file"]
         img = file.read()
-        add_photo(save_file(img, file.filename), int(request.form["album_id"]),
-                  int(request.form["section_id1"]), request.form["popup-desc"])
+        add_essay(save_file(img, file.filename), request.form["popup-title"], request.form["popup-desc"])
 
     return jsonify({'redirect': request.referrer or url_for('index')})
 
@@ -90,7 +108,8 @@ def albums(id):
 
 @app.route('/essay')
 def essay():
-    return render_template("essay.html", user=current_user)
+    essays = get_essays()
+    return render_template("essay.html", user=current_user, essays=essays)
 
 # @app.route('/essay/<int:id>')
 # def essays(id):

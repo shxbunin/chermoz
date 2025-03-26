@@ -1,6 +1,6 @@
 ﻿from collections import defaultdict
 
-from database.tables import local_session, Users, Photos, Sections, Albums
+from database.tables import local_session, Users, Photos, Sections, Albums, Essays
 from sqlalchemy import select
 
 
@@ -95,3 +95,12 @@ def edit_photo_desc(photo_id, description):
         photo = session.query(Photos).filter_by(id=photo_id).first()
         photo.description = description
         session.commit()
+
+def add_essay(path, name, description):
+    with local_session() as session:
+        session.add(Essays(path=path, name=name, description=description))
+        session.commit()
+
+def get_essays():
+    with local_session() as session:
+        return session.query(Essays).all()
