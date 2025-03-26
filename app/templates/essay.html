@@ -53,14 +53,19 @@
                     </div>
                 </div>
                 {% endif %}
-                <!-- todo -->
+                {% for essay in essays %}
+                    <div class="albums-item-container">
+                        <div class="albums-item-title">{{ essay.name }}</div>
+                        <div class="albums-item-caption">{{ essay.description }}</div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
     {% if user.admin %}
     <div class="popup" id="popup">
         <div class="popup-content">
-            <form action="/addEssay" method="post" id="popup-form">
+            <form action="/uploadEssay" method="post" id="popup-form">
                 <label for="input-photo">Файл</label>
                 <input id="input-photo" type="file" multiple accept="application/pdf" name="file">
                 <label class="popup-title" for="popup-title">Название очерка</label>
