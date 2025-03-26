@@ -578,11 +578,21 @@ input[type="file"] {
 
 .ep {
     font-family: 'Playfair Display';
+    font-style: italic;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 18px;
     margin: 35px 0 50px;
     color: #222;
-    padding-right: 30%;
+}
+
+.author-1 {
+    margin-top: 15px;
+    margin-left: 200px;
+}
+
+.author-2 {
+    margin-top: 15px;
+    margin-left: 100px;
 }
 
 .context-menu {
@@ -829,3 +839,7 @@ canvas {
     }
 }
 
+
+.main-photo {
+    max-width: 500px;
+}

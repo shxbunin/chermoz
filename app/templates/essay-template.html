@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>chermoz</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/style.css" />
 </head>
 <body>
     <header>
@@ -42,40 +42,19 @@
             {% endif %}
         </div>
     </div>
+    <br>
+    <br>
+    <div id="pdf" style="display: none;">{{ essay.path }}</div>
     <div class="updates no-select">
         <div class="container no-select">
-            <div class="ep">
-                У каждого из нас на свете есть места,<br>
-                Что нам за далью лет все ближе, все дороже,<br>
-                Там дышится легко, там мира чистота,<br>
-                Нас делают на миг счастливей и моложе<br>
-                <div class="author-1">Л. Фадеев</div>
-            </div>
-
-            <div class="main-photo"><img src="../static/images/main.jpg" alt=""></div>
-
-            <div class="ep">
-                Мой Чёрмоз, старый город.<br>
-                Надёжный мой причал<br>
-                И Родина  моя.<br>
-                Мне плохо без тебя,<br>
-                Сжимает сердце холод<br>
-                С годами по тебе<br>
-                Сильней тоскую я.<br>
-                <div class="author-2">Е. Рыбко</div>
-            </div>
-            <!-- {#<div class="subtitle no-select">Последние обновления</div>#}
-            <div class="albums">
-                {% for photo in photos %}
-                    <a href="/album/{{ photo.section_id }}">
-                        <div class="gallery-item photo">
-                            <img src="{{ photo.path }}" alt="">
-                        </div>
-                    </a>
-                {% endfor %}
-            </div> -->
+            <div id="pdf-container"></div>
         </div>
     </div>
+    <br>
+    <br>
     <script src="../static/js/header.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.js"></script>
+    <script src="../static/js/pdf.js"></script>
 </body>
 </html>

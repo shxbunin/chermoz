@@ -111,9 +111,10 @@ def essay():
     essays = get_essays()
     return render_template("essay.html", user=current_user, essays=essays)
 
-# @app.route('/essay/<int:id>')
-# def essays(id):
-#     return render_template("essay-template.html", user=current_user, essay = essay)
+@app.route('/essay/<int:id>')
+def essays(id):
+    essay = get_essay_by_id(id)
+    return render_template("essay-template.html", user=current_user, essay = essay)
 
 @app.route('/photo/<int:id>')
 def photo(id):

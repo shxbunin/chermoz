@@ -54,10 +54,15 @@
                 </div>
                 {% endif %}
                 {% for essay in essays %}
+                <a href="/essay/{{ essay.id }}" class="albums-item">
+                    <div class="img-cover">
+                        <img src="../static/images/books.png" alt="">
+                    </div>
                     <div class="albums-item-container">
                         <div class="albums-item-title">{{ essay.name }}</div>
                         <div class="albums-item-caption">{{ essay.description }}</div>
                     </div>
+                </a>
                 {% endfor %}
             </div>
         </div>

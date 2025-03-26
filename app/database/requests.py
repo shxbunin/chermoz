@@ -104,3 +104,7 @@ def add_essay(path, name, description):
 def get_essays():
     with local_session() as session:
         return session.query(Essays).all()
+
+def get_essay_by_id(id):
+    with local_session() as session:
+        return session.query(Essays).filter_by(id=id).first()
