@@ -51,9 +51,9 @@
                 {% if user.admin or photos[album.id]|length > 0 %}
                 <div class="subtitle no-select">{{ album.name }}</div>
                 <div class="description no-select">{{ album.description }}</div>
-                <div class="albums">
+                <div class="gallery">
                     {% if user.admin %}
-                    <div class="gallery-item first" data-album-id="{{ album.id }}">
+                    <div class="gallery-item item first" data-album-id="{{ album.id }}">
                         <div class="plus-container">
                             <img src="../static/images/plus.svg" alt="">
                         </div>
@@ -61,7 +61,7 @@
                     {% endif %}
                     {% for photo in photos[album.id] %}
                     <a href="/photo/{{ photo.id }}">
-                        <div class="gallery-item photo">
+                        <div class="item photo">
                             <img src="{{ photo.path }}" alt="">
                             {% if user.admin %}
                             <button type="button" class="more-btn" aria-label="Меню">⋮</button>
