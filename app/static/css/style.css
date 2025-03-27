@@ -364,6 +364,37 @@ input[type="file"] {
     /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);*/
 }
 
+.gallery {
+    max-width: 1200px;
+    column-count: 3;
+    column-gap: 10px;
+}
+
+
+.item {
+    background-color: #eeeeee;
+    margin-bottom: 16px;
+    break-inside: avoid;
+    transition-duration: 0.1s;
+    position: relative;
+}
+
+.item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+.item:hover {
+    background-color: #e6e6e6;
+}
+
+.item:hover .more-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .gallery-item {
     background-color: #eeeeee;
     aspect-ratio: 1 / 1;
@@ -768,6 +799,9 @@ canvas {
     textarea.photo-description {
         width: 80%;
     }
+    .gallery {
+        column-count: 2;
+    }
 }
 
 /* 768px */
@@ -838,7 +872,6 @@ canvas {
         width: 90%;
     }
 }
-
 
 .main-photo {
     max-width: 500px;
