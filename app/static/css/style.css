@@ -365,7 +365,7 @@ input[type="file"] {
 }
 
 .gallery {
-    max-width: 1200px;
+    width: 100%;
     column-count: 3;
     column-gap: 10px;
 }
@@ -720,6 +720,28 @@ canvas {
     width: 100%;
 }
 
+.list-item-container {
+    background-color: #f7f7f7;
+    border-bottom: 2px solid rgb(84, 84, 84);
+    min-height: 50px;
+    padding: 10px 10px;
+    background-image: none;
+}
+
+.list-item-container.first-container {
+    border-top: 2px solid rgb(84, 84, 84);
+}
+
+.list-item-container:hover {
+    background-color: #eee;
+    background-image:
+       linear-gradient(to left, rgba(238, 238, 238, 0.5) 0%, #eee 100%),
+       var(--cover-path);
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: right center;
+}
+
 /* === Adaptive Media Queries === */
 /* 1200px */
 @media (max-width: 1200px) {
@@ -801,6 +823,10 @@ canvas {
     }
     .gallery {
         column-count: 2;
+    }
+    .list-item-container:hover {
+        background-color: #eee;
+        background-image: none;
     }
 }
 

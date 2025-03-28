@@ -45,7 +45,7 @@
     <div class="updates no-select">
         <div class="container no-select">
             <div class="subtitle no-select"></div>
-            <div class="albums">
+            <!-- <div class="albums">
                 {% if user.admin %}
                 <div class="albums-item first">
                     <div class="plus-container">
@@ -53,18 +53,40 @@
                     </div>
                 </div>
                 {% endif %}
-                {% for section in sections %}
-                <a href="/album/{{ section.id }}" class="albums-item">
+                {% for i in range(sections|length ) %}
+                <a href="/album/{{ sections[i].id }}" class="albums-item">
                     <div class="img-cover">
-                        <img src="{{ section.cover_path }}" alt="">
+                        <img src="{{ sections[i].cover_path }}" alt="">
                     </div>
                     <div class="albums-item-container">
-                        <div class="albums-item-title">{{ section.name }}</div>
-                        <div class="albums-item-caption">{{ section.description }}</div>
+                        <div class="albums-item-title">{{ sections[i].name }}</div>
+                        <div class="albums-item-caption">{{ sections[i].description }}</div>
                     </div>
                 </a>
-                {% endfor %}
-            </div>
+                {% endfor %} 
+            </div> -->
+            {% if user.admin %}
+            <div class="add-button first"><div>Добавить раздел</div></div>
+            {% endif %}
+            <br><br>
+            {% for i in range(sections|length ) %}
+                {% if i == 0 %}
+                <a href="/album/{{ sections[i].id }}" class="list-item">
+                    <div class="list-item-container first-container" style="--cover-path: url('{{ sections[i].cover_path }}');">
+                        <div class="albums-item-title">{{ sections[i].name }}</div>
+                        <div class="albums-item-caption">{{ sections[i].description }}</div>
+                    </div>
+                </a>
+                {% else %}
+                <a href="/album/{{ sections[i].id }}" class="list-item">
+                    <div class="list-item-container" style="--cover-path: url('{{ sections[i].cover_path }}');">
+                        <div class="albums-item-title">{{ sections[i].name }}</div>
+                        <div class="albums-item-caption">{{ sections[i].description }}</div>
+                    </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+            <br><br>
         </div>
     </div>
     {% if user.admin %}

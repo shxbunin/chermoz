@@ -45,26 +45,28 @@
     <div class="updates no-select">
         <div class="container no-select">
             <div class="subtitle no-select"></div>
-            <div class="albums">
-                {% if user.admin %}
-                <div class="albums-item first">
-                    <div class="plus-container">
-                        <img src="../static/images/plus.svg" alt="">
-                    </div>
-                </div>
-                {% endif %}
-                {% for essay in essays %}
-                <a href="/essay/{{ essay.id }}" class="albums-item">
-                    <div class="img-cover">
-                        <img src="../static/images/books.png" alt="">
-                    </div>
-                    <div class="albums-item-container">
-                        <div class="albums-item-title">{{ essay.name }}</div>
-                        <div class="albums-item-caption">{{ essay.description }}</div>
+            {% if user.admin %}
+            <div class="add-button first"><div>Добавить очерк</div></div>
+            {% endif %}
+            <br><br>
+            {% for i in range(essays|length ) %}
+                {% if i == 0 %}
+                <a href="/album/{{ essays[i].id }}" class="list-item">
+                    <div class="list-item-container first-container" style="--cover-path: url('/static/images/books.png');">
+                        <div class="albums-item-title">{{ essays[i].name }}</div>
+                        <div class="albums-item-caption">{{ essays[i].description }}</div>
                     </div>
                 </a>
-                {% endfor %}
-            </div>
+                {% else %}
+                <a href="/album/{{ essays[i].id }}" class="list-item">
+                    <div class="list-item-container" style="--cover-path: url('/static/images/books.png');">
+                        <div class="albums-item-title">{{ essays[i].name }}</div>
+                        <div class="albums-item-caption">{{ essays[i].description }}</div>
+                    </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+            <br><br>
         </div>
     </div>
     {% if user.admin %}
