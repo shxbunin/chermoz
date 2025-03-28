@@ -51,14 +51,14 @@
             <br><br>
             {% for i in range(essays|length ) %}
                 {% if i == 0 %}
-                <a href="/album/{{ essays[i].id }}" class="list-item">
+                <a href="/essay/{{ essays[i].id }}" class="list-item">
                     <div class="list-item-container first-container" style="--cover-path: url('/static/images/books.png');">
                         <div class="albums-item-title">{{ essays[i].name }}</div>
                         <div class="albums-item-caption">{{ essays[i].description }}</div>
                     </div>
                 </a>
                 {% else %}
-                <a href="/album/{{ essays[i].id }}" class="list-item">
+                <a href="/essay/{{ essays[i].id }}" class="list-item">
                     <div class="list-item-container" style="--cover-path: url('/static/images/books.png');">
                         <div class="albums-item-title">{{ essays[i].name }}</div>
                         <div class="albums-item-caption">{{ essays[i].description }}</div>
